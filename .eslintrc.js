@@ -30,6 +30,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     'react/state-in-constructor': 'off',
     'react/jsx-filename-extension': 'off',
+    'react/prop-types' : 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
