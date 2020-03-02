@@ -1,21 +1,13 @@
 import React from 'react';
 
-import Row from '../row';
+import Head from '../table-head';
+import TableBody from '../table-body';
 
-import generateUsers from '../../data/generate-users';
-
-const Table: React.FC = () => {
-  const users = generateUsers();
-
-  return (
-    <table>
-      {
-        users.map((user) => (
-          <Row key={user.id} user={user} />
-        ))
-      }
-    </table>
-  );
-};
+const Table: React.FC = () => (
+  <table>
+    <Head />
+    <TableBody />
+  </table>
+);
 
 export default Table;
