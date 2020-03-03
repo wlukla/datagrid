@@ -16,7 +16,7 @@ const Head: React.FC = () => {
 
   return (
     <thead className="thead-dark">
-      <tr>
+      <tr className="table-row">
         {
           headings.map((heading) => (
             <TableCell scope="col" th key={heading}>{heading}</TableCell>

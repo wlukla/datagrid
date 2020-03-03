@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './table-cell.scss';
-
 interface TableCellProps {
   children: string | number;
   scope?: string;
