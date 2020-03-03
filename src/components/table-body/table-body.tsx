@@ -1,17 +1,17 @@
 import React from 'react';
 
-import Row from '../row';
+import TableRow from '../table-row';
 
 import generateUsers from '../../data/generate-users';
 
 const TableBody: React.FC = () => {
-  const users = generateUsers();
+  const usersData = generateUsers();
 
   return (
     <tbody>
       {
-        users.map((user) => (
-          <Row key={user.id} user={user} />
+        usersData.map((user) => (
+          <TableRow key={user.id} userData={user} />
         ))
       }
     </tbody>

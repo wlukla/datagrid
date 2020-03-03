@@ -1,3 +1,3 @@
-import Head from './head';
+import Head from './table-head';
 
 export default Head;
