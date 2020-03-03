@@ -14,7 +14,7 @@ const generateUsers = (): DataModel[] => {
     const country = faker.address.country();
     const phone = faker.phone.phoneNumberFormat();
     const companyName = faker.company.companyName();
-    const yearlySalary = Math.floor(Math.random() * (1_000_000 - 50_000)) + 50_000;
+    const yearlySalary = +faker.finance.amount();
 
     users.push({
       id: i,

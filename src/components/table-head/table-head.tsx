@@ -8,7 +8,7 @@ const Head: React.FC = () => {
     'Name',
     'Job title',
     'Company',
-    'Salary (yearly)',
+    'Salary (yearly), k$',
     'Country',
     'Email',
     'Phone number',
