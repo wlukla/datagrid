@@ -2,11 +2,12 @@ import DataModel from '../data/data-model';
 
 interface StateModel {
   usersData: DataModel[];
+  usersDataProcessed: DataModel[];
   sortingColumns: SortingModel[];
 }
 
 interface SortingModel {
-  column: string;
+  column: number;
   decreasing: boolean;
 }
 

@@ -1,8 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { sortByColumn } from '../../actions';
 
-import TableHeadCell from '../table-head-cell';
+interface TableHeadProps {
+  sortBy: (columnIndex: number) => object;
+}
 
-const Head: React.FC = () => {
+const Head: React.FC<TableHeadProps> = ({ sortBy }) => {
   const headings = [
     'id',
     'Name',
@@ -18,8 +22,13 @@ const Head: React.FC = () => {
     <thead className="thead-dark">
       <tr className="table-row">
         {
-          headings.map((heading) => (
-            <TableHeadCell key={heading}>{heading}</TableHeadCell>
+          headings.map((heading, idx) => (
+            <th
+              key={heading}
+              onClick={() => sortBy(idx)}
+            >
+              {heading}
+            </th>
           ))
         }
       </tr>
@@ -27,4 +36,11 @@ const Head: React.FC = () => {
   );
 };
 
-export default Head;
+const mapDispatchToProps = {
+  sortBy: sortByColumn,
+};
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Head);

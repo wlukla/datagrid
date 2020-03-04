@@ -6,7 +6,7 @@ import TableRow from '../table-row';
 import DataModel from '../../data/data-model';
 import StateModel from '../../reducer/types';
 
-import loadUserData from '../../actions';
+import { loadUserData } from '../../actions';
 import { Actions } from '../../actions/types';
 
 interface TableBodyProps {
@@ -36,7 +36,7 @@ const TableBody: React.FC<TableBodyProps> = (props) => {
 };
 
 const mapStateToProps = (state: StateModel) => ({
-  usersData: state.usersData,
+  usersData: state.usersDataProcessed,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({

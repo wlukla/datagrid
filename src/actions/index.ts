@@ -19,4 +19,12 @@ const loadUserData = (dispatch: Dispatch) => () => {
   dispatch(loadUsersDataSuccess(usersData));
 };
 
-export default loadUserData;
+const sortByColumn = (columnIndex: number) => ({
+  type: EActionTypes.SORT_BY_COLUMN,
+  payload: columnIndex,
+});
+
+export {
+  loadUserData,
+  sortByColumn,
+};
