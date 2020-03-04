@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TableCell from '../table-cell';
+import TableHeadCell from '../table-head-cell';
 
 const Head: React.FC = () => {
   const headings = [
@@ -19,7 +19,7 @@ const Head: React.FC = () => {
       <tr className="table-row">
         {
           headings.map((heading) => (
-            <TableCell scope="col" th key={heading}>{heading}</TableCell>
+            <TableHeadCell key={heading}>{heading}</TableHeadCell>
           ))
         }
       </tr>
