@@ -1,14 +1,12 @@
 import DataModel from '../data/data-model';
 
-interface StateModel {
+export interface StateModel {
   usersData: DataModel[];
   usersDataProcessed: DataModel[];
   sortingColumns: SortingModel[];
 }
 
-interface SortingModel {
-  column: number;
-  decreasing: boolean;
+export interface SortingModel {
+  columnIndex: number;
+  increasing: boolean;
 }
-
-export default StateModel;

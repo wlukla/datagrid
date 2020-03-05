@@ -1,7 +1,13 @@
 import { Dispatch } from 'redux';
 import DataModel from '../data/data-model';
-import { ActionTypeRequest, ActionTypeSuccess, EActionTypes } from './types';
 import generateUsers from '../data/generate-users';
+import { SortingModel } from '../reducer/types';
+import {
+  ActionTypeRequest,
+  ActionTypeSuccess,
+  SortByColumn,
+  EActionTypes,
+} from './types';
 
 const loadUsersDataRequest = (): ActionTypeRequest => ({
   type: EActionTypes.LOAD_USERS_DATA_REQUEST,
@@ -19,9 +25,9 @@ const loadUserData = (dispatch: Dispatch) => () => {
   dispatch(loadUsersDataSuccess(usersData));
 };
 
-const sortByColumn = (columnIndex: number) => ({
+const sortByColumn = (sortingSettings: SortingModel): SortByColumn => ({
   type: EActionTypes.SORT_BY_COLUMN,
-  payload: columnIndex,
+  payload: sortingSettings,
 });
 
 export {

@@ -1,5 +1,5 @@
-import { sortBy } from 'lodash';
-import StateModel from './types';
+import sort from '../utils/sorting-utils';
+import { StateModel } from './types';
 import { Actions } from '../actions/types';
 
 const initialState: StateModel = {
@@ -26,13 +26,8 @@ const reducer = (
     case 'SORT_BY_COLUMN':
       return {
         ...state,
-        sortingColumns: state.sortingColumns.concat({
-          column: action.payload,
-          decreasing: true,
-        }),
-        usersDataProcessed: sortBy(
-          state.usersData, Object.keys(state.usersData[0])[action.payload],
-        ),
+        sortingColumns: state.sortingColumns.concat(action.payload),
+        usersDataProcessed: sort(state.usersData, action.payload),
       };
     default:
       return state;

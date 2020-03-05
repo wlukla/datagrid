@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 import { sortByColumn } from '../../actions';
+import { SortingModel } from '../../reducer/types';
 
 interface TableHeadProps {
-  sortBy: (columnIndex: number) => object;
+  sortBy: (sortingSettings: SortingModel) => object;
 }
 
 const Head: React.FC<TableHeadProps> = ({ sortBy }) => {
@@ -31,10 +32,19 @@ const Head: React.FC<TableHeadProps> = ({ sortBy }) => {
             >
               <span>{heading}</span>
               <div className="controls">
-                <FontAwesomeIcon icon={faArrowUp} />
+                <FontAwesomeIcon
+                  icon={faArrowUp}
+                  onClick={() => sortBy({
+                    columnIndex: idx,
+                    increasing: true,
+                  })}
+                />
                 <FontAwesomeIcon
                   icon={faArrowDown}
-                  onClick={() => sortBy(idx)}
+                  onClick={() => sortBy({
+                    columnIndex: idx,
+                    increasing: false,
+                  })}
                 />
               </div>
             </th>
