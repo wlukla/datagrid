@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+
 import { sortByColumn } from '../../actions';
 
 interface TableHeadProps {
@@ -25,9 +28,15 @@ const Head: React.FC<TableHeadProps> = ({ sortBy }) => {
           headings.map((heading, idx) => (
             <th
               key={heading}
-              onClick={() => sortBy(idx)}
             >
-              {heading}
+              <span>{heading}</span>
+              <div className="controls">
+                <FontAwesomeIcon icon={faArrowUp} />
+                <FontAwesomeIcon
+                  icon={faArrowDown}
+                  onClick={() => sortBy(idx)}
+                />
+              </div>
             </th>
           ))
         }

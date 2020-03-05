@@ -24,7 +24,6 @@ const reducer = (
         usersDataProcessed: action.payload,
       };
     case 'SORT_BY_COLUMN':
-      console.log('dispatched', action.payload, Object.keys(state.usersData));
       return {
         ...state,
         sortingColumns: state.sortingColumns.concat({
