@@ -10,3 +10,8 @@ export interface SortingModel {
   columnIndex: number;
   increasing: boolean;
 }
+
+export interface FilterModel {
+  columnIndex: number;
+  query: string;
+}

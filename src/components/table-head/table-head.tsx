@@ -3,17 +3,18 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
-import { sortByColumn } from '../../actions';
-import { SortingModel, StateModel } from '../../reducer/types';
+import { sortByColumn, filterByColumn } from '../../actions';
+import { SortingModel, StateModel, FilterModel } from '../../reducer/types';
 
 import './table-head.scss';
 
 interface TableHeadProps {
   sortBy: (sortingSettings: SortingModel) => object;
+  filterBy: (sortingSettings: FilterModel) => object;
   sortingColumns: SortingModel | null;
 }
 
-const Head: React.FC<TableHeadProps> = ({ sortBy, sortingColumns }) => {
+const Head: React.FC<TableHeadProps> = ({ sortBy, sortingColumns, filterBy }) => {
   const headings = [
     'id',
     'Name',
@@ -59,6 +60,13 @@ const Head: React.FC<TableHeadProps> = ({ sortBy, sortingColumns }) => {
                     increasing: false,
                   })}
                 />
+                <input
+                  type="text"
+                  onChange={(e) => filterBy({
+                    columnIndex: idx,
+                    query: e.target.value,
+                  })}
+                />
               </div>
             </th>
           ))
@@ -74,6 +82,7 @@ const mapStateToProps = (state: StateModel) => ({
 
 const mapDispatchToProps = {
   sortBy: sortByColumn,
+  filterBy: filterByColumn,
 };
 
 export default connect(

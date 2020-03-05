@@ -7,6 +7,7 @@ interface DataModel {
   country: string;
   email: string;
   phone: string;
+  [key: string]: string | number;
 }
 
 export default DataModel;

@@ -1,11 +1,12 @@
 import { Dispatch } from 'redux';
 import DataModel from '../data/data-model';
 import generateUsers from '../data/generate-users';
-import { SortingModel } from '../reducer/types';
+import { SortingModel, FilterModel } from '../reducer/types';
 import {
   ActionTypeRequest,
   ActionTypeSuccess,
   SortByColumn,
+  FilterByColumn,
   EActionTypes,
 } from './types';
 
@@ -30,7 +31,13 @@ const sortByColumn = (sortingSettings: SortingModel): SortByColumn => ({
   payload: sortingSettings,
 });
 
+const filterByColumn = (filterSettings: FilterModel): FilterByColumn => ({
+  type: EActionTypes.FILTER_BY_COLUMN,
+  payload: filterSettings,
+});
+
 export {
   loadUserData,
   sortByColumn,
+  filterByColumn,
 };

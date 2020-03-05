@@ -1,11 +1,12 @@
 import { Action } from 'redux';
 import DataModel from '../data/data-model';
-import { SortingModel } from '../reducer/types';
+import { SortingModel, FilterModel } from '../reducer/types';
 
 export enum EActionTypes {
   LOAD_USERS_DATA_REQUEST = 'LOAD_USERS_DATA_REQUEST',
   LOAD_USERS_DATA_SUCCESS = 'LOAD_USERS_DATA_SUCCESS',
   SORT_BY_COLUMN = 'SORT_BY_COLUMN',
+  FILTER_BY_COLUMN = 'FILTER_BY_COLUMN',
 }
 
 export interface ActionTypeRequest extends Action {
@@ -22,4 +23,12 @@ export interface SortByColumn extends Action {
   payload: SortingModel;
 }
 
-export type Actions = ActionTypeSuccess | ActionTypeRequest | SortByColumn;
+export interface FilterByColumn extends Action {
+  type: EActionTypes.FILTER_BY_COLUMN;
+  payload: FilterModel;
+}
+
+export type Actions = ActionTypeSuccess
+                    | ActionTypeRequest
+                    | SortByColumn
+                    | FilterByColumn;
