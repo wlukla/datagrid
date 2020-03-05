@@ -1,5 +1,5 @@
 import sort from '../utils/sorting-utils';
-import filter from '../utils/filter-utils';
+import { filterColumn, filterAll } from '../utils/filter-utils';
 import { StateModel } from './types';
 import { Actions } from '../actions/types';
 
@@ -33,7 +33,12 @@ const reducer = (
     case 'FILTER_BY_COLUMN':
       return {
         ...state,
-        usersDataProcessed: filter(state.usersData, action.payload),
+        usersDataProcessed: filterColumn(state.usersData, action.payload),
+      };
+    case 'FILTER_BY_ALL':
+      return {
+        ...state,
+        usersDataProcessed: filterAll(state.usersData, action.payload),
       };
     default:
       return state;

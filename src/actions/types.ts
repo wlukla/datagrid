@@ -5,8 +5,11 @@ import { SortingModel, FilterModel } from '../reducer/types';
 export enum EActionTypes {
   LOAD_USERS_DATA_REQUEST = 'LOAD_USERS_DATA_REQUEST',
   LOAD_USERS_DATA_SUCCESS = 'LOAD_USERS_DATA_SUCCESS',
+
   SORT_BY_COLUMN = 'SORT_BY_COLUMN',
+
   FILTER_BY_COLUMN = 'FILTER_BY_COLUMN',
+  FILTER_BY_ALL = 'FILTER_BY_ALL',
 }
 
 export interface ActionTypeRequest extends Action {
@@ -28,7 +31,13 @@ export interface FilterByColumn extends Action {
   payload: FilterModel;
 }
 
+export interface FilterByAll extends Action {
+  type: EActionTypes.FILTER_BY_ALL;
+  payload: string;
+}
+
 export type Actions = ActionTypeSuccess
                     | ActionTypeRequest
                     | SortByColumn
-                    | FilterByColumn;
+                    | FilterByColumn
+                    | FilterByAll;

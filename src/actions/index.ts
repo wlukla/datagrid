@@ -7,6 +7,7 @@ import {
   ActionTypeSuccess,
   SortByColumn,
   FilterByColumn,
+  FilterByAll,
   EActionTypes,
 } from './types';
 
@@ -36,8 +37,14 @@ const filterByColumn = (filterSettings: FilterModel): FilterByColumn => ({
   payload: filterSettings,
 });
 
+const filterByAll = (query: string): FilterByAll => ({
+  type: EActionTypes.FILTER_BY_ALL,
+  payload: query,
+});
+
 export {
   loadUserData,
   sortByColumn,
   filterByColumn,
+  filterByAll,
 };
