@@ -5,7 +5,7 @@ import { Actions } from '../actions/types';
 const initialState: StateModel = {
   usersData: [],
   usersDataProcessed: [],
-  sortingColumns: [],
+  sortingColumns: null,
 };
 
 const reducer = (
@@ -26,7 +26,7 @@ const reducer = (
     case 'SORT_BY_COLUMN':
       return {
         ...state,
-        sortingColumns: state.sortingColumns.concat(action.payload),
+        sortingColumns: action.payload,
         usersDataProcessed: sort(state.usersData, action.payload),
       };
     default:

@@ -4,13 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 import { sortByColumn } from '../../actions';
-import { SortingModel } from '../../reducer/types';
+import { SortingModel, StateModel } from '../../reducer/types';
+
+import './table-head.scss';
 
 interface TableHeadProps {
   sortBy: (sortingSettings: SortingModel) => object;
+  sortingColumns: SortingModel | null;
 }
 
-const Head: React.FC<TableHeadProps> = ({ sortBy }) => {
+const Head: React.FC<TableHeadProps> = ({ sortBy, sortingColumns }) => {
   const headings = [
     'id',
     'Name',
@@ -21,6 +24,14 @@ const Head: React.FC<TableHeadProps> = ({ sortBy }) => {
     'Email',
     'Phone number',
   ];
+
+  let columnIndex: number;
+  let increasing: boolean;
+
+  if (sortingColumns) {
+    columnIndex = sortingColumns.columnIndex;
+    increasing = sortingColumns.increasing;
+  }
 
   return (
     <thead className="thead-dark">
@@ -34,6 +45,7 @@ const Head: React.FC<TableHeadProps> = ({ sortBy }) => {
               <div className="controls">
                 <FontAwesomeIcon
                   icon={faArrowUp}
+                  className={columnIndex === idx && increasing ? 'active' : ''}
                   onClick={() => sortBy({
                     columnIndex: idx,
                     increasing: true,
@@ -41,6 +53,7 @@ const Head: React.FC<TableHeadProps> = ({ sortBy }) => {
                 />
                 <FontAwesomeIcon
                   icon={faArrowDown}
+                  className={columnIndex === idx && !increasing ? 'active' : ''}
                   onClick={() => sortBy({
                     columnIndex: idx,
                     increasing: false,
@@ -55,11 +68,15 @@ const Head: React.FC<TableHeadProps> = ({ sortBy }) => {
   );
 };
 
+const mapStateToProps = (state: StateModel) => ({
+  sortingColumns: state.sortingColumns,
+});
+
 const mapDispatchToProps = {
   sortBy: sortByColumn,
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(Head);
