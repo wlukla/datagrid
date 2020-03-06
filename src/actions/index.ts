@@ -8,6 +8,7 @@ import {
   SortByColumn,
   FilterByColumn,
   FilterByAll,
+  UpdateCurrentBool,
   EActionTypes,
 } from './types';
 
@@ -42,9 +43,18 @@ const filterByAll = (query: string): FilterByAll => ({
   payload: query,
 });
 
+const updateCurrentBool = (label: string): UpdateCurrentBool => {
+  console.log(label);
+  return {
+    type: EActionTypes.UPDATE_CURRENT_BOOL,
+    payload: label,
+  };
+};
+
 export {
   loadUserData,
   sortByColumn,
   filterByColumn,
   filterByAll,
+  updateCurrentBool,
 };

@@ -7,6 +7,7 @@ const initialState: StateModel = {
   usersData: [],
   usersDataProcessed: [],
   sortingColumns: null,
+  currentBool: 'All',
 };
 
 const reducer = (
@@ -39,6 +40,11 @@ const reducer = (
       return {
         ...state,
         usersDataProcessed: filterAll(state.usersData, action.payload),
+      };
+    case 'UPDATE_CURRENT_BOOL':
+      return {
+        ...state,
+        currentBool: action.payload,
       };
     default:
       return state;

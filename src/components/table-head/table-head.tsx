@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+
+import TableHeadBoolCell from '../table-head-bool-cell';
 
 import { sortByColumn, filterByColumn } from '../../actions';
 import { SortingModel, StateModel, FilterModel } from '../../reducer/types';
@@ -44,33 +46,46 @@ const Head: React.FC<TableHeadProps> = ({ sortBy, sortingColumns, filterBy }) =>
             >
               <span>{heading}</span>
               <div className="controls">
-                <FontAwesomeIcon
-                  icon={faArrowUp}
-                  className={columnIndex === idx && increasing ? 'active' : ''}
-                  onClick={() => sortBy({
-                    columnIndex: idx,
-                    increasing: true,
-                  })}
-                />
-                <FontAwesomeIcon
-                  icon={faArrowDown}
-                  className={columnIndex === idx && !increasing ? 'active' : ''}
-                  onClick={() => sortBy({
-                    columnIndex: idx,
-                    increasing: false,
-                  })}
-                />
-                <input
-                  type="text"
-                  onChange={(e) => filterBy({
-                    columnIndex: idx,
-                    query: e.target.value,
-                  })}
-                />
+                <div className="sorting-switchers">
+                  <FontAwesomeIcon
+                    icon={faArrowUp}
+                    className={columnIndex === idx && increasing ? 'active' : ''}
+                    onClick={() => sortBy({
+                      columnIndex: idx,
+                      increasing: true,
+                    })}
+                  />
+                  <FontAwesomeIcon
+                    icon={faArrowDown}
+                    className={columnIndex === idx && !increasing ? 'active' : ''}
+                    onClick={() => sortBy({
+                      columnIndex: idx,
+                      increasing: false,
+                    })}
+                  />
+                </div>
+
+                <form
+                  onSubmit={(e: FormEvent<HTMLFormElement>) => {
+                    e.preventDefault();
+                  }}
+                  action="#"
+                >
+                  <input
+                    className="form-control-sm search"
+                    name="query"
+                    type="text"
+                    onChange={(e) => filterBy({
+                      columnIndex: idx,
+                      query: e.target.value,
+                    })}
+                  />
+                </form>
               </div>
             </th>
           ))
         }
+        <TableHeadBoolCell />
       </tr>
     </thead>
   );

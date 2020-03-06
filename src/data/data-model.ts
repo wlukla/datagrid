@@ -7,7 +7,8 @@ interface DataModel {
   country: string;
   email: string;
   phone: string;
-  [key: string]: string | number;
+  maritalStatus: boolean;
+  [key: string]: string | number | boolean;
 }
 
 export default DataModel;

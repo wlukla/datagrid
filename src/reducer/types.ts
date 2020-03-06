@@ -4,6 +4,7 @@ export interface StateModel {
   usersData: DataModel[];
   usersDataProcessed: DataModel[];
   sortingColumns: null | SortingModel;
+  currentBool: string;
 }
 
 export interface SortingModel {

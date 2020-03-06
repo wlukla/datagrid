@@ -9,8 +9,8 @@ interface RowProps {
 const TableRow: React.FC<RowProps> = ({ userData }) => (
   <tr>
     {
-      Object.values(userData).map((value) => (
-        <TableBodyCell key={value}>{value}</TableBodyCell>
+      Object.entries(userData).map((value) => (
+        <TableBodyCell key={value[0]}>{value[1]}</TableBodyCell>
       ))
     }
   </tr>

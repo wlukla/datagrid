@@ -10,6 +10,8 @@ export enum EActionTypes {
 
   FILTER_BY_COLUMN = 'FILTER_BY_COLUMN',
   FILTER_BY_ALL = 'FILTER_BY_ALL',
+
+  UPDATE_CURRENT_BOOL = 'UPDATE_CURRENT_BOOL',
 }
 
 export interface ActionTypeRequest extends Action {
@@ -36,8 +38,14 @@ export interface FilterByAll extends Action {
   payload: string;
 }
 
+export interface UpdateCurrentBool extends Action {
+  type: EActionTypes.UPDATE_CURRENT_BOOL;
+  payload: string;
+}
+
 export type Actions = ActionTypeSuccess
                     | ActionTypeRequest
                     | SortByColumn
                     | FilterByColumn
-                    | FilterByAll;
+                    | FilterByAll
+                    | UpdateCurrentBool;

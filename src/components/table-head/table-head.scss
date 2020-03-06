@@ -1,3 +1,23 @@
+th {
+  font-size: 0.7rem;
+}
+
+.search {
+  width: 5rem;
+}
+
 .active {
   color: lightcoral;
+}
+
+.sorting-switchers {
+  display: flex;
+  justify-content: space-around;
+  width: 2rem;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }

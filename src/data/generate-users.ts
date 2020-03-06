@@ -11,10 +11,11 @@ const generateUsers = (): DataModel[] => {
     const name = faker.fake('{{name.lastName}}, {{name.firstName}}');
     const jobTitle = faker.name.jobTitle();
     const email = faker.internet.email();
-    const country = faker.address.country();
+    const country = faker.address.countryCode();
     const phone = faker.phone.phoneNumberFormat();
     const companyName = faker.company.companyName();
     const yearlySalary = +faker.finance.amount();
+    const maritalStatus = faker.random.boolean();
 
     users.push({
       id: i,
@@ -25,6 +26,7 @@ const generateUsers = (): DataModel[] => {
       country,
       email,
       phone,
+      maritalStatus,
     });
   }
 
