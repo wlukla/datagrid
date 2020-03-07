@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import DataModel from '../data/data-model';
+import { DataModel } from '../data/data-model';
 import { SortingModel, FilterModel } from '../reducer/types';
 
 export enum EActionTypes {

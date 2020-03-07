@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import DataModel from '../data/data-model';
+import { DataModel } from '../data/data-model';
 import generateUsers from '../data/generate-users';
 import { SortingModel, FilterModel } from '../reducer/types';
 import {
@@ -43,13 +43,10 @@ const filterByAll = (query: string): FilterByAll => ({
   payload: query,
 });
 
-const updateCurrentBool = (label: string): UpdateCurrentBool => {
-  console.log(label);
-  return {
-    type: EActionTypes.UPDATE_CURRENT_BOOL,
-    payload: label,
-  };
-};
+const updateCurrentBool = (label: string): UpdateCurrentBool => ({
+  type: EActionTypes.UPDATE_CURRENT_BOOL,
+  payload: label,
+});
 
 export {
   loadUserData,

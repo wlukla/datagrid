@@ -1,5 +1,5 @@
 import React from 'react';
-import DataModel from '../../data/data-model';
+import { DataModel } from '../../data/data-model';
 import TableBodyCell from '../table-body-cell';
 
 interface RowProps {

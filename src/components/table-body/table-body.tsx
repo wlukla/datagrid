@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
 import TableRow from '../table-row';
-import DataModel from '../../data/data-model';
+import { DataModel } from '../../data/data-model';
 import { StateModel } from '../../reducer/types';
 
 import { loadUserData } from '../../actions';

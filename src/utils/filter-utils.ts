@@ -1,4 +1,4 @@
-import DataModel from '../data/data-model';
+import { DataModel } from '../data/data-model';
 import { FilterModel } from '../reducer/types';
 
 const filterColumn = (data: DataModel[], settings: FilterModel): DataModel[] => {

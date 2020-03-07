@@ -1,5 +1,5 @@
 import { sortBy } from 'lodash';
-import DataModel from '../data/data-model';
+import { DataModel } from '../data/data-model';
 import { SortingModel } from '../reducer/types';
 
 const sort = (data: DataModel[], settings: SortingModel): DataModel[] => {

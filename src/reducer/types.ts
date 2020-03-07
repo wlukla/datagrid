@@ -1,4 +1,4 @@
-import DataModel from '../data/data-model';
+import { DataModel } from '../data/data-model';
 
 export interface StateModel {
   usersData: DataModel[];
