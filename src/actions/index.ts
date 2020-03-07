@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { DataModel } from '../data/data-model';
+import { DataModel, EmploymentStatus } from '../data/data-model';
 import generateUsers from '../data/generate-users';
 import { SortingModel, FilterModel } from '../reducer/types';
 import {
@@ -10,6 +10,7 @@ import {
   FilterByAll,
   UpdateCurrentBool,
   EActionTypes,
+  UpdateCurrentEnum,
 } from './types';
 
 const loadUsersDataRequest = (): ActionTypeRequest => ({
@@ -48,10 +49,16 @@ const updateCurrentBool = (label: string): UpdateCurrentBool => ({
   payload: label,
 });
 
+const updateCurrentEnum = (label: string): UpdateCurrentEnum => ({
+  type: EActionTypes.UPDATE_CURRENT_ENUM,
+  payload: label,
+});
+
 export {
   loadUserData,
   sortByColumn,
   filterByColumn,
   filterByAll,
   updateCurrentBool,
+  updateCurrentEnum,
 };

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 import TableHeadBoolCell from '../table-head-bool-cell';
+import TableHeadEnumCell from '../table-head-enum-cell';
 
 import { sortByColumn, filterByColumn } from '../../actions';
 import { SortingModel, StateModel, FilterModel } from '../../reducer/types';
@@ -86,6 +87,7 @@ const Head: React.FC<TableHeadProps> = ({ sortBy, sortingColumns, filterBy }) =>
           ))
         }
         <TableHeadBoolCell />
+        <TableHeadEnumCell />
       </tr>
     </thead>
   );

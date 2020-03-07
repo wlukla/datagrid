@@ -5,7 +5,6 @@ const FAKER_SEED = 9999999;
 
 function randomEnum<T>(anEnum: T): T[keyof T] {
   const enumValues = Object.values(anEnum) as unknown as T[keyof T][];
-  console.log(enumValues);
   const randomIndex = faker.random.number() % enumValues.length;
   const randomEnumValue = enumValues[randomIndex];
   return randomEnumValue;

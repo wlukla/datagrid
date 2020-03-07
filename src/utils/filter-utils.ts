@@ -1,4 +1,4 @@
-import { DataModel } from '../data/data-model';
+import { DataModel, EmploymentStatus } from '../data/data-model';
 import { FilterModel } from '../reducer/types';
 
 const filterColumn = (data: DataModel[], settings: FilterModel): DataModel[] => {
@@ -17,7 +17,7 @@ const filterColumn = (data: DataModel[], settings: FilterModel): DataModel[] => 
   return resData;
 };
 
-const filterAll = (data: DataModel[], query: string) => {
+const filterAll = (data: DataModel[], query: string): DataModel[] => {
   const resData = [];
 
   for (let i = 0; i < data.length; i += 1) {
@@ -34,7 +34,7 @@ const filterAll = (data: DataModel[], query: string) => {
   return resData;
 };
 
-const filterBool = (data: DataModel[], currentBool: string) => {
+const filterBool = (data: DataModel[], currentBool: string): DataModel[] => {
   if (currentBool === 'All') {
     return data;
   }
@@ -52,8 +52,25 @@ const filterBool = (data: DataModel[], currentBool: string) => {
   return resData;
 };
 
+const filterEnum = (data: DataModel[], label: string): DataModel[] => {
+  if (label === '-') {
+    return data;
+  }
+
+  const resData = [];
+
+  for (let i = 0; i < data.length; i += 1) {
+    if (data[i].employmentStatus === label) {
+      resData.push(data[i]);
+    }
+  }
+
+  return resData;
+};
+
 export {
   filterColumn,
   filterAll,
   filterBool,
+  filterEnum,
 };

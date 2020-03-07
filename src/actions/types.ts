@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { DataModel } from '../data/data-model';
+import { DataModel, EmploymentStatus } from '../data/data-model';
 import { SortingModel, FilterModel } from '../reducer/types';
 
 export enum EActionTypes {
@@ -12,6 +12,8 @@ export enum EActionTypes {
   FILTER_BY_ALL = 'FILTER_BY_ALL',
 
   UPDATE_CURRENT_BOOL = 'UPDATE_CURRENT_BOOL',
+
+  UPDATE_CURRENT_ENUM = 'UPDATE_CURRENT_ENUM'
 }
 
 export interface ActionTypeRequest extends Action {
@@ -43,9 +45,15 @@ export interface UpdateCurrentBool extends Action {
   payload: string;
 }
 
+export interface UpdateCurrentEnum extends Action {
+  type: EActionTypes.UPDATE_CURRENT_ENUM;
+  payload: string;
+}
+
 export type Actions = ActionTypeSuccess
                     | ActionTypeRequest
                     | SortByColumn
                     | FilterByColumn
                     | FilterByAll
-                    | UpdateCurrentBool;
+                    | UpdateCurrentBool
+                    | UpdateCurrentEnum;

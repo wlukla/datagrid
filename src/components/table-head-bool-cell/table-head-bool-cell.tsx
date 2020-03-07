@@ -13,7 +13,7 @@ const TableHeadBoolCell: React.FC<TableHeadBoolCellProps> = ({ active, setCurren
 
   return (
     <th className="d-flex flex-column">
-      Marital Status
+      <span>Marital Status</span>
       <div className="btn-group btn-group-toggle" data-toggle="buttons">
         {
           labels.map((label) => (
