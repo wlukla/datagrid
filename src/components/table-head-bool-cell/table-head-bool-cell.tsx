@@ -25,6 +25,7 @@ const TableHeadBoolCell: React.FC<TableHeadBoolCellProps> = ({ active, setCurren
                   : 'btn btn-sm btn-secondary'
               }
               name={label}
+              key={label}
               onClick={() => setCurrentBool(label)}
             >
               {label}

@@ -1,5 +1,5 @@
 import sort from '../utils/sorting-utils';
-import { filterColumn, filterAll } from '../utils/filter-utils';
+import { filterColumn, filterAll, filterBool } from '../utils/filter-utils';
 import { StateModel } from './types';
 import { Actions } from '../actions/types';
 
@@ -45,6 +45,7 @@ const reducer = (
       return {
         ...state,
         currentBool: action.payload,
+        usersDataProcessed: filterBool(state.usersData, action.payload),
       };
     default:
       return state;

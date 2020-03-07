@@ -34,7 +34,26 @@ const filterAll = (data: DataModel[], query: string) => {
   return resData;
 };
 
+const filterBool = (data: DataModel[], currentBool: string) => {
+  if (currentBool === 'All') {
+    return data;
+  }
+
+  const boolVal = currentBool === 'Yes';
+
+  const resData = [];
+
+  for (let i = 0; i < data.length; i += 1) {
+    if (data[i].maritalStatus === boolVal) {
+      resData.push(data[i]);
+    }
+  }
+
+  return resData;
+};
+
 export {
   filterColumn,
   filterAll,
+  filterBool,
 };
