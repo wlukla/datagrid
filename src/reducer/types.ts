@@ -1,11 +1,11 @@
-import { DataModel, EmploymentStatus } from '../data/data-model';
+import { DataModel } from '../data/data-model';
 
 export interface StateModel {
   usersData: DataModel[];
   usersDataProcessed: DataModel[];
   sortingColumns: null | SortingModel;
   currentBool: string;
-  currentEnum: string[];
+  enumFilters: string[];
 }
 
 export interface SortingModel {

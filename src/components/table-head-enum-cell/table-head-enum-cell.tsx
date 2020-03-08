@@ -2,29 +2,54 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { EmploymentStatus } from '../../data/data-model';
-import { updateCurrentEnum } from '../../actions';
+import { updateEnum } from '../../actions';
 
 import './table-head-enum-cell.scss';
 
 interface TableHeadEnumCellProps {
-  filterByEnum: typeof updateCurrentEnum;
+  filterByEnum: typeof updateEnum;
 }
 
 const TableHeadEnumCell: React.FC<TableHeadEnumCellProps> = ({ filterByEnum }) => (
   <th>
     <span>Enum</span>
-    <select onChange={(e) => filterByEnum(e.target.value)}>
-      <option value="-">–</option>
-      <option value={EmploymentStatus.Employed}>Employed</option>
-      <option value={EmploymentStatus.Unemployed}>Unemployed</option>
-      <option value={EmploymentStatus.InActiveSearch}>In active search</option>
-      <option value={EmploymentStatus.Retired}>Retired</option>
-    </select>
+    <label htmlFor="employed">
+      <input
+        id="employed"
+        type="checkbox"
+        onChange={() => filterByEnum(EmploymentStatus.Employed)}
+      />
+      Employed
+    </label>
+    <label htmlFor="unemployed">
+      <input
+        id="unemployed"
+        type="checkbox"
+        onChange={() => filterByEnum(EmploymentStatus.Unemployed)}
+      />
+      Unemployed
+    </label>
+    <label htmlFor="inActiveSearch">
+      <input
+        id="inActiveSearch"
+        type="checkbox"
+        onChange={() => filterByEnum(EmploymentStatus.InActiveSearch)}
+      />
+      In active search
+    </label>
+    <label htmlFor="retired">
+      <input
+        id="retired"
+        type="checkbox"
+        onChange={() => filterByEnum(EmploymentStatus.Retired)}
+      />
+      Retired
+    </label>
   </th>
 );
 
 const mapDispatchToProps = {
-  filterByEnum: updateCurrentEnum,
+  filterByEnum: updateEnum,
 };
 
 export default connect(

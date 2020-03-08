@@ -1,6 +1,6 @@
 import sort from '../utils/sorting-utils';
 import {
-  filterColumn, filterAll, filterBool, filterEnum,
+  filterColumn, filterAll, filterBool, filterEnum, processEnumFilter,
 } from '../utils/filter-utils';
 import { StateModel } from './types';
 import { Actions } from '../actions/types';
@@ -10,7 +10,7 @@ const initialState: StateModel = {
   usersDataProcessed: [],
   sortingColumns: null,
   currentBool: 'All',
-  currentEnum: [],
+  enumFilters: [],
 };
 
 const reducer = (
@@ -50,11 +50,14 @@ const reducer = (
         currentBool: action.payload,
         usersDataProcessed: filterBool(state.usersData, action.payload),
       };
-    case 'UPDATE_CURRENT_ENUM':
+    case 'UPDATE_ENUM':
       return {
         ...state,
-        currentEnum: [action.payload],
-        usersDataProcessed: filterEnum(state.usersData, action.payload),
+        enumFilters: processEnumFilter(state.enumFilters, action.payload),
+        usersDataProcessed: filterEnum(
+          state.usersData,
+          processEnumFilter(state.enumFilters, action.payload),
+        ),
       };
     default:
       return state;
