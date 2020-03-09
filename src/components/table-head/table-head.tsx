@@ -28,11 +28,8 @@ const Head: React.FC<TableHeadProps> = (props) => {
   const headings = [
     'id',
     'Name',
-    'Job title',
-    'Company',
-    'Salary (yearly), k$',
     'Country',
-    'Email',
+    'Salary (yearly), k$',
     'Phone number',
   ];
 

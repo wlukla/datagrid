@@ -8,11 +8,8 @@ export enum EmploymentStatus {
 export interface DataModel {
   id: number;
   name: string;
-  jobTitle: string;
-  companyName: string;
-  yearlySalary: number;
   country: string;
-  email: string;
+  yearlySalary: number;
   phone: string;
   maritalStatus: boolean;
   employmentStatus: EmploymentStatus;
