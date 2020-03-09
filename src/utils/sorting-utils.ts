@@ -5,16 +5,23 @@ import { SortingModel } from '../reducer/types';
 const processSortingColumns = (
   sortingColumns: SortingModel[],
   newColumn: SortingModel,
-) => {
-  const resSortingColumns = [...sortingColumns];
-  const processedColumn = { ...newColumn };
-
-  const newColumnIndex = sortingColumns.indexOf(processedColumn);
+): SortingModel[] => {
+  let resSortingColumns: SortingModel[] = [...sortingColumns];
+  const newColumnIndex: number = newColumn.columnIndex;
+  const newColumnIndexInColumns = sortingColumns.findIndex((col) => (
+    col.columnIndex === newColumnIndex
+  ));
 
   if (resSortingColumns.length === 0) {
-    resSortingColumns[0] = processedColumn;
-  } else if (newColumnIndex <= 0) {
-    resSortingColumns.push(processedColumn);
+    resSortingColumns[0] = newColumn;
+  } else if (newColumnIndexInColumns === -1) {
+    resSortingColumns.push(newColumn);
+  } else {
+    resSortingColumns = [
+      ...resSortingColumns.slice(0, newColumnIndexInColumns),
+      newColumn,
+      ...resSortingColumns.slice(newColumnIndexInColumns + 1),
+    ];
   }
 
   return resSortingColumns;
