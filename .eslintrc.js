@@ -28,6 +28,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     'react/state-in-constructor': 'off',
     'react/jsx-filename-extension': 'off',
     'react/prop-types' : 'off',
