@@ -5,12 +5,13 @@ import { SortingModel, FilterModel } from '../reducer/types';
 import {
   ActionTypeRequest,
   ActionTypeSuccess,
-  SortByColumn,
   FilterByColumn,
   FilterByAll,
   UpdateCurrentBool,
   EActionTypes,
   UpdateEnum,
+  AddColumnToSort,
+  ReplaceSortColumns,
 } from './types';
 
 const loadUsersDataRequest = (): ActionTypeRequest => ({
@@ -29,8 +30,13 @@ const loadUserData = (dispatch: Dispatch) => () => {
   dispatch(loadUsersDataSuccess(usersData));
 };
 
-const sortByColumn = (sortingSettings: SortingModel): SortByColumn => ({
-  type: EActionTypes.SORT_BY_COLUMN,
+const addColumnToSort = (sortingSettings: SortingModel): AddColumnToSort => ({
+  type: EActionTypes.ADD_COLUMN_TO_SORT,
+  payload: sortingSettings,
+});
+
+const replaceSortColumns = (sortingSettings: SortingModel): ReplaceSortColumns => ({
+  type: EActionTypes.REPLACE_SORT_COLUMNS,
   payload: sortingSettings,
 });
 
@@ -56,9 +62,10 @@ const updateEnum = (label: string): UpdateEnum => ({
 
 export {
   loadUserData,
-  sortByColumn,
   filterByColumn,
   filterByAll,
   updateCurrentBool,
   updateEnum,
+  addColumnToSort,
+  replaceSortColumns,
 };

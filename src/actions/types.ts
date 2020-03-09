@@ -6,7 +6,8 @@ export enum EActionTypes {
   LOAD_USERS_DATA_REQUEST = 'LOAD_USERS_DATA_REQUEST',
   LOAD_USERS_DATA_SUCCESS = 'LOAD_USERS_DATA_SUCCESS',
 
-  SORT_BY_COLUMN = 'SORT_BY_COLUMN',
+  ADD_COLUMN_TO_SORT = 'ADD_COLUMN_TO_SORT',
+  REPLACE_SORT_COLUMNS = 'REPLACE_SORT_COLUMNS',
 
   FILTER_BY_COLUMN = 'FILTER_BY_COLUMN',
   FILTER_BY_ALL = 'FILTER_BY_ALL',
@@ -25,8 +26,13 @@ export interface ActionTypeSuccess extends Action {
   payload: DataModel[];
 }
 
-export interface SortByColumn extends Action {
-  type: EActionTypes.SORT_BY_COLUMN;
+export interface AddColumnToSort extends Action {
+  type: EActionTypes.ADD_COLUMN_TO_SORT;
+  payload: SortingModel;
+}
+
+export interface ReplaceSortColumns extends Action {
+  type: EActionTypes.REPLACE_SORT_COLUMNS;
   payload: SortingModel;
 }
 
@@ -52,7 +58,8 @@ export interface UpdateEnum extends Action {
 
 export type Actions = ActionTypeSuccess
                     | ActionTypeRequest
-                    | SortByColumn
+                    | ReplaceSortColumns
+                    | AddColumnToSort
                     | FilterByColumn
                     | FilterByAll
                     | UpdateCurrentBool

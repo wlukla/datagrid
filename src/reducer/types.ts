@@ -3,14 +3,14 @@ import { DataModel } from '../data/data-model';
 export interface StateModel {
   usersData: DataModel[];
   usersDataProcessed: DataModel[];
-  sortingColumns: null | SortingModel;
+  sortingColumns: SortingModel[];
   currentBool: string;
   enumFilters: string[];
 }
 
 export interface SortingModel {
   columnIndex: number;
-  increasing: boolean;
+  order: 'desc' | 'asc';
 }
 
 export interface FilterModel {

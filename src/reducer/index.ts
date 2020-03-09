@@ -1,4 +1,4 @@
-import sort from '../utils/sorting-utils';
+import { processSortingColumns, sort } from '../utils/sorting-utils';
 import {
   filterColumn, filterAll, filterBool, filterEnum, processEnumFilter,
 } from '../utils/filter-utils';
@@ -8,7 +8,7 @@ import { Actions } from '../actions/types';
 const initialState: StateModel = {
   usersData: [],
   usersDataProcessed: [],
-  sortingColumns: null,
+  sortingColumns: [],
   currentBool: 'All',
   enumFilters: [],
 };
@@ -28,11 +28,19 @@ const reducer = (
         usersData: action.payload,
         usersDataProcessed: action.payload,
       };
-    case 'SORT_BY_COLUMN':
+    case 'ADD_COLUMN_TO_SORT':
       return {
         ...state,
-        sortingColumns: action.payload,
-        usersDataProcessed: sort(state.usersData, action.payload),
+        sortingColumns: processSortingColumns(state.sortingColumns, action.payload),
+        usersDataProcessed: sort(state.usersData, processSortingColumns(
+          state.sortingColumns, action.payload,
+        )),
+      };
+    case 'REPLACE_SORT_COLUMNS':
+      return {
+        ...state,
+        sortingColumns: [action.payload],
+        usersDataProcessed: sort(state.usersData, [action.payload]),
       };
     case 'FILTER_BY_COLUMN':
       return {

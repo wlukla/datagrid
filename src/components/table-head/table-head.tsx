@@ -6,18 +6,25 @@ import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import TableHeadBoolCell from '../table-head-bool-cell';
 import TableHeadEnumCell from '../table-head-enum-cell';
 
-import { sortByColumn, filterByColumn } from '../../actions';
-import { SortingModel, StateModel, FilterModel } from '../../reducer/types';
+import { addColumnToSort, replaceSortColumns, filterByColumn } from '../../actions';
+import { SortingModel, StateModel } from '../../reducer/types';
 
 import './table-head.scss';
 
 interface TableHeadProps {
-  sortBy: (sortingSettings: SortingModel) => object;
-  filterBy: (sortingSettings: FilterModel) => object;
-  sortingColumns: SortingModel | null;
+  addColumn: typeof addColumnToSort;
+  replaceColumns: typeof replaceSortColumns;
+  filterBy: typeof filterByColumn;
+  sortingColumns: SortingModel[];
 }
 
-const Head: React.FC<TableHeadProps> = ({ sortBy, sortingColumns, filterBy }) => {
+const Head: React.FC<TableHeadProps> = (props) => {
+  const {
+    addColumn,
+    replaceColumns,
+    sortingColumns,
+    filterBy,
+  } = props;
   const headings = [
     'id',
     'Name',
@@ -28,14 +35,6 @@ const Head: React.FC<TableHeadProps> = ({ sortBy, sortingColumns, filterBy }) =>
     'Email',
     'Phone number',
   ];
-
-  let columnIndex: number;
-  let increasing: boolean;
-
-  if (sortingColumns) {
-    columnIndex = sortingColumns.columnIndex;
-    increasing = sortingColumns.increasing;
-  }
 
   return (
     <thead className="thead-dark">
@@ -50,19 +49,35 @@ const Head: React.FC<TableHeadProps> = ({ sortBy, sortingColumns, filterBy }) =>
                 <div className="sorting-switchers">
                   <FontAwesomeIcon
                     icon={faArrowUp}
-                    className={columnIndex === idx && increasing ? 'active' : ''}
-                    onClick={() => sortBy({
-                      columnIndex: idx,
-                      increasing: true,
-                    })}
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        addColumn({
+                          columnIndex: idx,
+                          order: 'desc',
+                        });
+                      } else {
+                        replaceColumns({
+                          columnIndex: idx,
+                          order: 'desc',
+                        });
+                      }
+                    }}
                   />
                   <FontAwesomeIcon
                     icon={faArrowDown}
-                    className={columnIndex === idx && !increasing ? 'active' : ''}
-                    onClick={() => sortBy({
-                      columnIndex: idx,
-                      increasing: false,
-                    })}
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        addColumn({
+                          columnIndex: idx,
+                          order: 'asc',
+                        });
+                      } else {
+                        replaceColumns({
+                          columnIndex: idx,
+                          order: 'asc',
+                        });
+                      }
+                    }}
                   />
                 </div>
 
@@ -98,7 +113,8 @@ const mapStateToProps = (state: StateModel) => ({
 });
 
 const mapDispatchToProps = {
-  sortBy: sortByColumn,
+  addColumn: addColumnToSort,
+  replaceColumns: replaceSortColumns,
   filterBy: filterByColumn,
 };
 
