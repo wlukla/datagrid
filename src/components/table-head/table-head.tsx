@@ -25,6 +25,7 @@ const Head: React.FC<TableHeadProps> = (props) => {
     sortingColumns,
     filterBy,
   } = props;
+
   const headings = [
     'id',
     'Name',
@@ -32,6 +33,20 @@ const Head: React.FC<TableHeadProps> = (props) => {
     'Salary (yearly), k$',
     'Phone number',
   ];
+
+  const sortingIndexes: number[] = [];
+  const sortingOrders: ('asc' | 'desc')[] = [];
+
+  const getClassName = (idx: number, order: 'asc' | 'desc'): string => (
+    sortingIndexes.includes(idx) && sortingOrders[sortingIndexes.indexOf(idx)] === order
+      ? 'active'
+      : ''
+  );
+
+  for (let i = 0; i < sortingColumns.length; i += 1) {
+    sortingIndexes.push(sortingColumns[i].columnIndex);
+    sortingOrders.push(sortingColumns[i].order);
+  }
 
   return (
     <thead className="thead-dark">
@@ -46,6 +61,7 @@ const Head: React.FC<TableHeadProps> = (props) => {
                 <div className="sorting-switchers">
                   <FontAwesomeIcon
                     icon={faArrowUp}
+                    className={getClassName(idx, 'desc')}
                     onClick={(e) => {
                       if (e.shiftKey) {
                         addColumn({
@@ -62,6 +78,7 @@ const Head: React.FC<TableHeadProps> = (props) => {
                   />
                   <FontAwesomeIcon
                     icon={faArrowDown}
+                    className={getClassName(idx, 'asc')}
                     onClick={(e) => {
                       if (e.shiftKey) {
                         addColumn({
