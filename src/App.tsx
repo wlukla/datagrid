@@ -4,6 +4,7 @@ import store from './store';
 import Table from './components/table';
 import SearchBar from './components/search-bar';
 import VisibilityBar from './components/visibility-bar';
+import VirtualizationToggler from './components/virtualization-toggler';
 
 import './App.scss';
 
@@ -13,6 +14,7 @@ function App() {
       <h1>Data grid</h1>
       <SearchBar />
       <VisibilityBar />
+      <VirtualizationToggler />
       <Table />
     </Provider>
   );

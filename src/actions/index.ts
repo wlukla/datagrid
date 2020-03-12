@@ -13,6 +13,7 @@ import {
   AddColumnToSort,
   ReplaceSortColumns,
   UpdateColumnVisibility,
+  ToggleVirtualization,
 } from './types';
 
 const loadUsersDataRequest = (): ActionTypeRequest => ({
@@ -66,6 +67,10 @@ const updateColumnVisibility = (label: string): UpdateColumnVisibility => ({
   payload: label,
 });
 
+const toggleVirtualization = (): ToggleVirtualization => ({
+  type: EActionTypes.TOGGLE_VIRTUALIZATION,
+});
+
 export {
   loadUserData,
   filterByColumn,
@@ -75,4 +80,5 @@ export {
   addColumnToSort,
   replaceSortColumns,
   updateColumnVisibility,
+  toggleVirtualization,
 };

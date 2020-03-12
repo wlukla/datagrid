@@ -17,6 +17,8 @@ export enum EActionTypes {
   UPDATE_ENUM = 'UPDATE_ENUM',
 
   UPDATE_COLUMN_VISIBILITY = 'UPDATE_COLUMN_VISIBILITY',
+
+  TOGGLE_VIRTUALIZATION = 'TOGGLE_VIRTUALIZATION',
 }
 
 export interface ActionTypeRequest extends Action {
@@ -63,6 +65,10 @@ export interface UpdateColumnVisibility extends Action {
   payload: string;
 }
 
+export interface ToggleVirtualization extends Action {
+  type: EActionTypes.TOGGLE_VIRTUALIZATION;
+}
+
 export type Actions = ActionTypeSuccess
                     | ActionTypeRequest
                     | ReplaceSortColumns
@@ -71,4 +77,5 @@ export type Actions = ActionTypeSuccess
                     | FilterByAll
                     | UpdateCurrentBool
                     | UpdateEnum
-                    | UpdateColumnVisibility;
+                    | UpdateColumnVisibility
+                    | ToggleVirtualization;

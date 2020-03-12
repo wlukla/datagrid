@@ -14,12 +14,14 @@ import { Actions } from '../../actions/types';
 interface TableBodyProps {
   usersData: DataModel[];
   loadData: () => void;
+  virtualized: boolean;
 }
 
 const TableBody: React.FC<TableBodyProps> = (props) => {
   const {
     usersData,
     loadData,
+    virtualized,
   } = props;
 
   useEffect(() => {
@@ -30,28 +32,41 @@ const TableBody: React.FC<TableBodyProps> = (props) => {
     return <h2>No matches</h2>;
   }
 
+  if (virtualized) {
+    return (
+      <div className="table-body">
+        <AutoSizer>
+          {({ height, width }) => (
+            <List
+              height={height}
+              itemCount={usersData.length}
+              itemSize={35}
+              width={width}
+            >
+              {({ index, style }) => (
+                <TableRow style={style} userData={usersData[index]} />
+              )}
+            </List>
+          )}
+        </AutoSizer>
+      </div>
+    );
+  }
+
   return (
-    <div className="table-body">
-      <AutoSizer>
-        {({ height, width }) => (
-          <List
-            height={height}
-            itemCount={usersData.length}
-            itemSize={35}
-            width={width}
-          >
-            {({ index, style }) => (
-              <TableRow style={style} userData={usersData[index]} />
-            )}
-          </List>
-        )}
-      </AutoSizer>
-    </div>
+    <>
+      {
+        usersData.map((user) => (
+          <TableRow userData={user} />
+        ))
+      }
+    </>
   );
 };
 
 const mapStateToProps = (state: StateModel) => ({
   usersData: state.usersDataProcessed,
+  virtualized: state.virtualized,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({

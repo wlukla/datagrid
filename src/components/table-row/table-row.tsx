@@ -6,7 +6,7 @@ import './table-row.scss';
 
 interface RowProps {
   userData: DataModel;
-  style: CSSProperties;
+  style?: CSSProperties;
 }
 
 const TableRow: React.FC<RowProps> = ({ userData, style }) => (

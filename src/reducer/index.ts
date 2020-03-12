@@ -15,6 +15,7 @@ const initialState: StateModel = {
   currentBool: 'All',
   enumFilters: [],
   hiddenColumns: [],
+  virtualized: true,
 };
 
 const reducer = (
@@ -79,6 +80,11 @@ const reducer = (
           state.usersData,
           processVisibility(state.hiddenColumns, action.payload),
         ),
+      };
+    case 'TOGGLE_VIRTUALIZATION':
+      return {
+        ...state,
+        virtualized: !state.virtualized,
       };
     default:
       return state;

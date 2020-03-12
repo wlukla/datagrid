@@ -7,6 +7,7 @@ export interface StateModel {
   currentBool: string;
   enumFilters: string[];
   hiddenColumns: string[];
+  virtualized: boolean;
 }
 
 export interface SortingModel {
