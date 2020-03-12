@@ -4,6 +4,8 @@ import store from './store';
 import Table from './components/table';
 import SearchBar from './components/search-bar';
 
+import './App.scss';
+
 function App() {
   return (
     <Provider store={store}>

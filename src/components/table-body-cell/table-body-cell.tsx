@@ -5,7 +5,7 @@ interface TableBodyCellProps {
 }
 
 const TableBodyCell: React.FC<TableBodyCellProps> = ({ children }) => (
-  <td>{String(children)}</td>
+  <div className="col">{String(children)}</div>
 );
 
 export default TableBodyCell;

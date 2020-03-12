@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { FixedSizeList as List } from 'react-window';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 import TableRow from '../table-row';
 import { DataModel } from '../../data/data-model';
@@ -14,6 +16,14 @@ interface TableBodyProps {
   loadData: () => void;
 }
 
+const Row = ({ index, style }: any) => (
+  <div className={index % 2 ? 'ListItemOdd' : 'ListItemEven'} style={style}>
+    Row
+    {' '}
+    {index}
+  </div>
+);
+
 const TableBody: React.FC<TableBodyProps> = (props) => {
   const {
     usersData,
@@ -25,13 +35,23 @@ const TableBody: React.FC<TableBodyProps> = (props) => {
   }, [loadData]);
 
   return (
-    <tbody>
-      {
-        usersData.map((user) => (
-          <TableRow key={user.id} userData={user} />
-        ))
-      }
-    </tbody>
+    <div className="table-body">
+      <AutoSizer>
+        {({ height, width }) => (
+          <List
+            className="List"
+            height={height}
+            itemCount={1000}
+            itemSize={35}
+            width={width}
+          >
+            {({ index, style }) => (
+              <TableRow style={style} userData={usersData[index]} />
+            )}
+          </List>
+        )}
+      </AutoSizer>
+    </div>
   );
 };
 
