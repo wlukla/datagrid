@@ -16,14 +16,6 @@ interface TableBodyProps {
   loadData: () => void;
 }
 
-const Row = ({ index, style }: any) => (
-  <div className={index % 2 ? 'ListItemOdd' : 'ListItemEven'} style={style}>
-    Row
-    {' '}
-    {index}
-  </div>
-);
-
 const TableBody: React.FC<TableBodyProps> = (props) => {
   const {
     usersData,
@@ -34,6 +26,12 @@ const TableBody: React.FC<TableBodyProps> = (props) => {
     loadData();
   }, [loadData]);
 
+  console.log(usersData);
+
+  if (usersData.length === 0) {
+    return <h2>No matches</h2>;
+  }
+
   return (
     <div className="table-body">
       <AutoSizer>
@@ -41,7 +39,7 @@ const TableBody: React.FC<TableBodyProps> = (props) => {
           <List
             className="List"
             height={height}
-            itemCount={1000}
+            itemCount={usersData.length}
             itemSize={35}
             width={width}
           >
