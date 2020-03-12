@@ -12,6 +12,7 @@ import {
   UpdateEnum,
   AddColumnToSort,
   ReplaceSortColumns,
+  UpdateColumnVisibility,
 } from './types';
 
 const loadUsersDataRequest = (): ActionTypeRequest => ({
@@ -60,6 +61,11 @@ const updateEnum = (label: string): UpdateEnum => ({
   payload: label,
 });
 
+const updateColumnVisibility = (label: string): UpdateColumnVisibility => ({
+  type: EActionTypes.UPDATE_COLUMN_VISIBILITY,
+  payload: label,
+});
+
 export {
   loadUserData,
   filterByColumn,
@@ -68,4 +74,5 @@ export {
   updateEnum,
   addColumnToSort,
   replaceSortColumns,
+  updateColumnVisibility,
 };

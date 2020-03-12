@@ -14,7 +14,9 @@ export enum EActionTypes {
 
   UPDATE_CURRENT_BOOL = 'UPDATE_CURRENT_BOOL',
 
-  UPDATE_ENUM = 'UPDATE_ENUM'
+  UPDATE_ENUM = 'UPDATE_ENUM',
+
+  UPDATE_COLUMN_VISIBILITY = 'UPDATE_COLUMN_VISIBILITY',
 }
 
 export interface ActionTypeRequest extends Action {
@@ -56,6 +58,11 @@ export interface UpdateEnum extends Action {
   payload: string;
 }
 
+export interface UpdateColumnVisibility extends Action {
+  type: EActionTypes.UPDATE_COLUMN_VISIBILITY;
+  payload: string;
+}
+
 export type Actions = ActionTypeSuccess
                     | ActionTypeRequest
                     | ReplaceSortColumns
@@ -63,4 +70,5 @@ export type Actions = ActionTypeSuccess
                     | FilterByColumn
                     | FilterByAll
                     | UpdateCurrentBool
-                    | UpdateEnum;
+                    | UpdateEnum
+                    | UpdateColumnVisibility;

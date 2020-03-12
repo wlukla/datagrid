@@ -26,8 +26,6 @@ const TableBody: React.FC<TableBodyProps> = (props) => {
     loadData();
   }, [loadData]);
 
-  console.log(usersData);
-
   if (usersData.length === 0) {
     return <h2>No matches</h2>;
   }
@@ -37,7 +35,6 @@ const TableBody: React.FC<TableBodyProps> = (props) => {
       <AutoSizer>
         {({ height, width }) => (
           <List
-            className="List"
             height={height}
             itemCount={usersData.length}
             itemSize={35}

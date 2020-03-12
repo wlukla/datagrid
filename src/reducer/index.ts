@@ -2,6 +2,9 @@ import { processSortingColumns, sort } from '../utils/sorting-utils';
 import {
   filterColumn, filterAll, filterBool, filterEnum, processEnumFilter,
 } from '../utils/filter-utils';
+import {
+  processVisibility, filterVisibility,
+} from '../utils/visibility-utils';
 import { StateModel } from './types';
 import { Actions } from '../actions/types';
 
@@ -11,6 +14,7 @@ const initialState: StateModel = {
   sortingColumns: [],
   currentBool: 'All',
   enumFilters: [],
+  hiddenColumns: [],
 };
 
 const reducer = (
@@ -65,6 +69,15 @@ const reducer = (
         usersDataProcessed: filterEnum(
           state.usersData,
           processEnumFilter(state.enumFilters, action.payload),
+        ),
+      };
+    case 'UPDATE_COLUMN_VISIBILITY':
+      return {
+        ...state,
+        hiddenColumns: processVisibility(state.hiddenColumns, action.payload),
+        usersDataProcessed: filterVisibility(
+          state.usersData,
+          processVisibility(state.hiddenColumns, action.payload),
         ),
       };
     default:
