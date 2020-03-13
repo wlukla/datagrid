@@ -15,6 +15,7 @@ interface TableHeadProps {
   addColumn: typeof addColumnToSort;
   replaceColumns: typeof replaceSortColumns;
   sortingColumns: SortingModel[];
+  hiddenColumns: string[];
 }
 
 const Head: React.FC<TableHeadProps> = (props) => {
@@ -22,17 +23,18 @@ const Head: React.FC<TableHeadProps> = (props) => {
     addColumn,
     replaceColumns,
     sortingColumns,
+    hiddenColumns,
   } = props;
 
-  const headings = [
-    'ID',
-    'Username',
-    'Name',
-    'IP address',
-    'Country',
-    'Zip code',
-    'Salary (yearly), k$',
-    'Phone number',
+  const headingWithLabels: string[][] = [
+    ['ID', 'id'],
+    ['Username', 'username'],
+    ['Name', 'name'],
+    ['IP address', 'ip'],
+    ['Country', 'country'],
+    ['Zip code', 'zipCode'],
+    ['Salary (yearly), k$', 'yearlySalary'],
+    ['Phone number', 'phone'],
   ];
 
   const sortingIndexes: number[] = [];
@@ -52,62 +54,72 @@ const Head: React.FC<TableHeadProps> = (props) => {
   return (
     <div className="table-head bg-dark">
       {
-        headings.map((heading, idx) => (
-          <div
-            key={heading}
-            className="table-head-cell"
-            style={{ width: '150px' }}
-          >
-            <span>{heading}</span>
-            <div className="controls">
-              <div className="sorting-switchers">
-                <FontAwesomeIcon
-                  icon={faArrowUp}
-                  className={getClassName(idx, 'desc')}
-                  onClick={(e) => {
-                    if (e.shiftKey) {
-                      addColumn({
-                        columnIndex: idx,
-                        order: 'desc',
-                      });
-                    } else {
-                      replaceColumns({
-                        columnIndex: idx,
-                        order: 'desc',
-                      });
-                    }
-                  }}
-                />
-                <FontAwesomeIcon
-                  icon={faArrowDown}
-                  className={getClassName(idx, 'asc')}
-                  onClick={(e) => {
-                    if (e.shiftKey) {
-                      addColumn({
-                        columnIndex: idx,
-                        order: 'asc',
-                      });
-                    } else {
-                      replaceColumns({
-                        columnIndex: idx,
-                        order: 'asc',
-                      });
-                    }
-                  }}
-                />
+        headingWithLabels.map((col, idx) => {
+          if (hiddenColumns.includes(col[1])) {
+            return null;
+          }
+
+          return (
+            <div
+              key={col[0]}
+              className="table-head-cell"
+            >
+              <span>{col[0]}</span>
+              <div className="controls">
+                <div className="sorting-switchers">
+                  <FontAwesomeIcon
+                    icon={faArrowUp}
+                    className={getClassName(idx, 'desc')}
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        addColumn({
+                          columnIndex: idx,
+                          order: 'desc',
+                        });
+                      } else {
+                        replaceColumns({
+                          columnIndex: idx,
+                          order: 'desc',
+                        });
+                      }
+                    }}
+                  />
+                  <FontAwesomeIcon
+                    icon={faArrowDown}
+                    className={getClassName(idx, 'asc')}
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        addColumn({
+                          columnIndex: idx,
+                          order: 'asc',
+                        });
+                      } else {
+                        replaceColumns({
+                          columnIndex: idx,
+                          order: 'asc',
+                        });
+                      }
+                    }}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        ))
+          );
+        })
       }
-      <TableHeadBoolCell />
-      <TableHeadEnumCell />
+      {
+        hiddenColumns.includes('maritalStatus') ? null : <TableHeadBoolCell />
+      }
+      {
+        hiddenColumns.includes('employmentStatus') ? null : <TableHeadEnumCell />
+      }
     </div>
   );
 };
 
 const mapStateToProps = (state: StateModel) => ({
   sortingColumns: state.sortingColumns,
+  hiddenColumns: state.hiddenColumns,
 });
 
 const mapDispatchToProps = {
