@@ -8,6 +8,7 @@ export interface StateModel {
   enumFilters: string[];
   hiddenColumns: string[];
   virtualized: boolean;
+  query: string;
 }
 
 export interface SortingModel {

@@ -1,11 +1,10 @@
 import { Dispatch } from 'redux';
 import { DataModel } from '../data/data-model';
 import generateUsers from '../data/generate-users';
-import { SortingModel, FilterModel } from '../reducer/types';
+import { SortingModel } from '../reducer/types';
 import {
   ActionTypeRequest,
   ActionTypeSuccess,
-  FilterByColumn,
   FilterByAll,
   UpdateCurrentBool,
   EActionTypes,
@@ -42,11 +41,6 @@ const replaceSortColumns = (sortingSettings: SortingModel): ReplaceSortColumns =
   payload: sortingSettings,
 });
 
-const filterByColumn = (filterSettings: FilterModel): FilterByColumn => ({
-  type: EActionTypes.FILTER_BY_COLUMN,
-  payload: filterSettings,
-});
-
 const filterByAll = (query: string): FilterByAll => ({
   type: EActionTypes.FILTER_BY_ALL,
   payload: query,
@@ -73,7 +67,6 @@ const toggleVirtualization = (): ToggleVirtualization => ({
 
 export {
   loadUserData,
-  filterByColumn,
   filterByAll,
   updateCurrentBool,
   updateEnum,

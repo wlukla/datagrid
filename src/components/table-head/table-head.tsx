@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
@@ -6,7 +6,7 @@ import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import TableHeadBoolCell from '../table-head-bool-cell';
 import TableHeadEnumCell from '../table-head-enum-cell';
 
-import { addColumnToSort, replaceSortColumns, filterByColumn } from '../../actions';
+import { addColumnToSort, replaceSortColumns } from '../../actions';
 import { SortingModel, StateModel } from '../../reducer/types';
 
 import './table-head.scss';
@@ -14,7 +14,6 @@ import './table-head.scss';
 interface TableHeadProps {
   addColumn: typeof addColumnToSort;
   replaceColumns: typeof replaceSortColumns;
-  filterBy: typeof filterByColumn;
   sortingColumns: SortingModel[];
 }
 
@@ -23,7 +22,6 @@ const Head: React.FC<TableHeadProps> = (props) => {
     addColumn,
     replaceColumns,
     sortingColumns,
-    filterBy,
   } = props;
 
   const headings = [
@@ -94,23 +92,6 @@ const Head: React.FC<TableHeadProps> = (props) => {
                     }}
                   />
                 </div>
-
-                <form
-                  onSubmit={(e: FormEvent<HTMLFormElement>) => {
-                    e.preventDefault();
-                  }}
-                  action="#"
-                >
-                  <input
-                    className="form-control-sm search"
-                    name="query"
-                    type="text"
-                    onChange={(e) => filterBy({
-                      columnIndex: idx,
-                      query: e.target.value,
-                    })}
-                  />
-                </form>
               </div>
             </th>
           ))
@@ -129,7 +110,6 @@ const mapStateToProps = (state: StateModel) => ({
 const mapDispatchToProps = {
   addColumn: addColumnToSort,
   replaceColumns: replaceSortColumns,
-  filterBy: filterByColumn,
 };
 
 export default connect(

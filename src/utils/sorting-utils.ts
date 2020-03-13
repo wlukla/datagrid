@@ -28,6 +28,10 @@ const processSortingColumns = (
 };
 
 const sort = (data: DataModel[], settings: SortingModel[]): DataModel[] => {
+  if (data.length === 0) {
+    return [];
+  }
+
   const iteratees: string[] = [];
   const orders: ('desc' | 'asc')[] = [];
   const columnNames = Object.keys(data[0]);

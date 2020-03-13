@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { DataModel } from '../data/data-model';
-import { SortingModel, FilterModel } from '../reducer/types';
+import { SortingModel } from '../reducer/types';
 
 export enum EActionTypes {
   LOAD_USERS_DATA_REQUEST = 'LOAD_USERS_DATA_REQUEST',
@@ -9,7 +9,6 @@ export enum EActionTypes {
   ADD_COLUMN_TO_SORT = 'ADD_COLUMN_TO_SORT',
   REPLACE_SORT_COLUMNS = 'REPLACE_SORT_COLUMNS',
 
-  FILTER_BY_COLUMN = 'FILTER_BY_COLUMN',
   FILTER_BY_ALL = 'FILTER_BY_ALL',
 
   UPDATE_CURRENT_BOOL = 'UPDATE_CURRENT_BOOL',
@@ -40,11 +39,6 @@ export interface ReplaceSortColumns extends Action {
   payload: SortingModel;
 }
 
-export interface FilterByColumn extends Action {
-  type: EActionTypes.FILTER_BY_COLUMN;
-  payload: FilterModel;
-}
-
 export interface FilterByAll extends Action {
   type: EActionTypes.FILTER_BY_ALL;
   payload: string;
@@ -73,7 +67,6 @@ export type Actions = ActionTypeSuccess
                     | ActionTypeRequest
                     | ReplaceSortColumns
                     | AddColumnToSort
-                    | FilterByColumn
                     | FilterByAll
                     | UpdateCurrentBool
                     | UpdateEnum
