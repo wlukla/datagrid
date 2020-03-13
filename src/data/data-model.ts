@@ -13,5 +13,8 @@ export interface DataModel {
   phone: string;
   maritalStatus: boolean;
   employmentStatus: EmploymentStatus;
+  username: string;
+  ip: string;
+  zipCode: string;
   [key: string]: string | number | boolean;
 }

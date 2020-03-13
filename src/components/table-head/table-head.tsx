@@ -26,8 +26,11 @@ const Head: React.FC<TableHeadProps> = (props) => {
 
   const headings = [
     'ID',
+    'Username',
     'Name',
+    'IP address',
     'Country',
+    'Zip code',
     'Salary (yearly), k$',
     'Phone number',
   ];
@@ -47,59 +50,58 @@ const Head: React.FC<TableHeadProps> = (props) => {
   }
 
   return (
-    <div>
-      <div className="table-head bg-dark">
-        {
-          headings.map((heading, idx) => (
-            <div
-              key={heading}
-              className="table-head-cell"
-            >
-              <span>{heading}</span>
-              <div className="controls">
-                <div className="sorting-switchers">
-                  <FontAwesomeIcon
-                    icon={faArrowUp}
-                    className={getClassName(idx, 'desc')}
-                    onClick={(e) => {
-                      if (e.shiftKey) {
-                        addColumn({
-                          columnIndex: idx,
-                          order: 'desc',
-                        });
-                      } else {
-                        replaceColumns({
-                          columnIndex: idx,
-                          order: 'desc',
-                        });
-                      }
-                    }}
-                  />
-                  <FontAwesomeIcon
-                    icon={faArrowDown}
-                    className={getClassName(idx, 'asc')}
-                    onClick={(e) => {
-                      if (e.shiftKey) {
-                        addColumn({
-                          columnIndex: idx,
-                          order: 'asc',
-                        });
-                      } else {
-                        replaceColumns({
-                          columnIndex: idx,
-                          order: 'asc',
-                        });
-                      }
-                    }}
-                  />
-                </div>
+    <div className="table-head bg-dark">
+      {
+        headings.map((heading, idx) => (
+          <div
+            key={heading}
+            className="table-head-cell"
+            style={{ width: '150px' }}
+          >
+            <span>{heading}</span>
+            <div className="controls">
+              <div className="sorting-switchers">
+                <FontAwesomeIcon
+                  icon={faArrowUp}
+                  className={getClassName(idx, 'desc')}
+                  onClick={(e) => {
+                    if (e.shiftKey) {
+                      addColumn({
+                        columnIndex: idx,
+                        order: 'desc',
+                      });
+                    } else {
+                      replaceColumns({
+                        columnIndex: idx,
+                        order: 'desc',
+                      });
+                    }
+                  }}
+                />
+                <FontAwesomeIcon
+                  icon={faArrowDown}
+                  className={getClassName(idx, 'asc')}
+                  onClick={(e) => {
+                    if (e.shiftKey) {
+                      addColumn({
+                        columnIndex: idx,
+                        order: 'asc',
+                      });
+                    } else {
+                      replaceColumns({
+                        columnIndex: idx,
+                        order: 'asc',
+                      });
+                    }
+                  }}
+                />
               </div>
             </div>
-          ))
-        }
-        <TableHeadBoolCell />
-        <TableHeadEnumCell />
-      </div>
+          </div>
+        ))
+      }
+      <TableHeadBoolCell />
+      <TableHeadEnumCell />
     </div>
   );
 };

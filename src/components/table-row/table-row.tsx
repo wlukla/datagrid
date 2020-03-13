@@ -10,7 +10,7 @@ interface RowProps {
 }
 
 const TableRow: React.FC<RowProps> = ({ userData, style }) => (
-  <div style={style} className="table-row">
+  <div style={{ ...style, width: '1500px' }} className="table-row">
     {
       Object.entries(userData).map((value) => (
         <TableBodyCell key={value[0]}>{value[1]}</TableBodyCell>

@@ -22,11 +22,17 @@ const generateUsers = (): DataModel[] => {
     const phone = faker.phone.phoneNumberFormat();
     const maritalStatus = faker.random.boolean();
     const employmentStatus = randomEnum(EmploymentStatus);
+    const username = faker.internet.userName();
+    const ip = faker.internet.ip();
+    const zipCode = faker.address.zipCode();
 
     users.push({
       id: i,
+      username,
       name,
+      ip,
       country,
+      zipCode,
       yearlySalary,
       phone,
       maritalStatus,

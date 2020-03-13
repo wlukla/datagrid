@@ -5,11 +5,14 @@ import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
 import TableRow from '../table-row';
+
 import { DataModel } from '../../data/data-model';
 import { StateModel } from '../../reducer/types';
 
 import { loadUserData } from '../../actions';
 import { Actions } from '../../actions/types';
+
+import './table-body.scss';
 
 interface TableBodyProps {
   usersData: DataModel[];
@@ -38,6 +41,7 @@ const TableBody: React.FC<TableBodyProps> = (props) => {
         <AutoSizer>
           {({ height, width }) => (
             <List
+              className="List"
               height={height}
               itemCount={usersData.length}
               itemSize={35}
