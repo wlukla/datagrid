@@ -44,7 +44,7 @@ const TableBody: React.FC<TableBodyProps> = (props) => {
               className="List"
               height={height}
               itemCount={usersData.length}
-              itemSize={35}
+              itemSize={25}
               width={width}
             >
               {({ index, style }) => (

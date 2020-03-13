@@ -1,7 +1,8 @@
 .table-head {
-  position: relative;
-  overflow: visible;
+  position: absolute;
+  top: 0;
   width: 1500px;
+  height: 110px;
   display: flex;
   color: #ffffff;
   font-size: 0.85rem;
