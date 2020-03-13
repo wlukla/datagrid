@@ -25,7 +25,7 @@ const Head: React.FC<TableHeadProps> = (props) => {
   } = props;
 
   const headings = [
-    'id',
+    'ID',
     'Name',
     'Country',
     'Salary (yearly), k$',
@@ -47,12 +47,13 @@ const Head: React.FC<TableHeadProps> = (props) => {
   }
 
   return (
-    <thead className="thead-dark">
-      <tr className="table-row">
+    <div>
+      <div className="table-head bg-dark">
         {
           headings.map((heading, idx) => (
-            <th
+            <div
               key={heading}
+              className="table-head-cell"
             >
               <span>{heading}</span>
               <div className="controls">
@@ -93,13 +94,13 @@ const Head: React.FC<TableHeadProps> = (props) => {
                   />
                 </div>
               </div>
-            </th>
+            </div>
           ))
         }
         <TableHeadBoolCell />
         <TableHeadEnumCell />
-      </tr>
-    </thead>
+      </div>
+    </div>
   );
 };
 

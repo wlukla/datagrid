@@ -1,9 +1,17 @@
-th {
-  font-size: 0.7rem;
+.table-head {
+  display: flex;
+  color: #ffffff;
+  font-size: 0.85rem;
 }
 
-.search {
-  width: 5rem;
+.table-head-cell {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 150px;
+  border: 1px solid #000000;
 }
 
 .active {
@@ -19,5 +27,4 @@ th {
 .controls {
   display: flex;
   align-items: center;
-  width: 100%;
 }

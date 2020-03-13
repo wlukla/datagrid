@@ -11,41 +11,43 @@ interface TableHeadEnumCellProps {
 }
 
 const TableHeadEnumCell: React.FC<TableHeadEnumCellProps> = ({ filterByEnum }) => (
-  <th>
-    <span>Enum</span>
-    <label htmlFor="employed">
-      <input
-        id="employed"
-        type="checkbox"
-        onChange={() => filterByEnum(EmploymentStatus.Employed)}
-      />
-      Employed
-    </label>
-    <label htmlFor="unemployed">
-      <input
-        id="unemployed"
-        type="checkbox"
-        onChange={() => filterByEnum(EmploymentStatus.Unemployed)}
-      />
-      Unemployed
-    </label>
-    <label htmlFor="inActiveSearch">
-      <input
-        id="inActiveSearch"
-        type="checkbox"
-        onChange={() => filterByEnum(EmploymentStatus.InActiveSearch)}
-      />
-      In active search
-    </label>
-    <label htmlFor="retired">
-      <input
-        id="retired"
-        type="checkbox"
-        onChange={() => filterByEnum(EmploymentStatus.Retired)}
-      />
-      Retired
-    </label>
-  </th>
+  <div className="table-cell table-head-cell enum-col">
+    <span>Employment Status</span>
+    <div className="checkbox-container">
+      <label htmlFor="employed">
+        <input
+          id="employed"
+          type="checkbox"
+          onChange={() => filterByEnum(EmploymentStatus.Employed)}
+        />
+        Employed
+      </label>
+      <label htmlFor="unemployed">
+        <input
+          id="unemployed"
+          type="checkbox"
+          onChange={() => filterByEnum(EmploymentStatus.Unemployed)}
+        />
+        Unemployed
+      </label>
+      <label htmlFor="inActiveSearch">
+        <input
+          id="inActiveSearch"
+          type="checkbox"
+          onChange={() => filterByEnum(EmploymentStatus.InActiveSearch)}
+        />
+        In active search
+      </label>
+      <label htmlFor="retired">
+        <input
+          id="retired"
+          type="checkbox"
+          onChange={() => filterByEnum(EmploymentStatus.Retired)}
+        />
+        Retired
+      </label>
+    </div>
+  </div>
 );
 
 const mapDispatchToProps = {

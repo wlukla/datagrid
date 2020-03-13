@@ -12,7 +12,7 @@ const TableHeadBoolCell: React.FC<TableHeadBoolCellProps> = ({ active, setCurren
   const labels = ['All', 'Yes', 'No'];
 
   return (
-    <th className="d-flex flex-column">
+    <div className="table-head-cell d-flex flex-column justify-content-center">
       <span>Marital Status</span>
       <div className="btn-group btn-group-toggle" data-toggle="buttons">
         {
@@ -33,7 +33,7 @@ const TableHeadBoolCell: React.FC<TableHeadBoolCellProps> = ({ active, setCurren
           ))
         }
       </div>
-    </th>
+    </div>
   );
 };
 
