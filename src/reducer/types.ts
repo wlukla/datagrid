@@ -9,6 +9,7 @@ export interface StateModel {
   hiddenColumns: string[];
   virtualized: boolean;
   query: string;
+  selectedRow: number | null;
 }
 
 export interface SortingModel {

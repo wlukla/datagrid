@@ -32,6 +32,8 @@ module.exports = {
     'react/state-in-constructor': 'off',
     'react/jsx-filename-extension': 'off',
     'react/prop-types' : 'off',
+    'jsx-a11y/interactive-supports-focus': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',

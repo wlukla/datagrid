@@ -14,6 +14,7 @@ const initialState: StateModel = {
   hiddenColumns: [],
   virtualized: true,
   query: '',
+  selectedRow: null,
 };
 
 const reducer = (
@@ -89,6 +90,11 @@ const reducer = (
       return {
         ...state,
         virtualized: !state.virtualized,
+      };
+    case 'SELECT_ROW':
+      return {
+        ...state,
+        selectedRow: action.payload,
       };
     default:
       return state;

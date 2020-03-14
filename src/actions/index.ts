@@ -13,6 +13,8 @@ import {
   ReplaceSortColumns,
   UpdateColumnVisibility,
   ToggleVirtualization,
+  SelectRow,
+  DeleteRow,
 } from './types';
 
 const loadUsersDataRequest = (): ActionTypeRequest => ({
@@ -65,6 +67,15 @@ const toggleVirtualization = (): ToggleVirtualization => ({
   type: EActionTypes.TOGGLE_VIRTUALIZATION,
 });
 
+const selectRow = (id: number): SelectRow => ({
+  type: EActionTypes.SELECT_ROW,
+  payload: id,
+});
+
+const deleteRow = (id: number): DeleteRow => ({
+  type: EActionTypes.DELETE_ROW,
+});
+
 export {
   loadUserData,
   filterByAll,
@@ -74,4 +85,6 @@ export {
   replaceSortColumns,
   updateColumnVisibility,
   toggleVirtualization,
+  selectRow,
+  deleteRow,
 };

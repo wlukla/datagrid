@@ -18,6 +18,9 @@ export enum EActionTypes {
   UPDATE_COLUMN_VISIBILITY = 'UPDATE_COLUMN_VISIBILITY',
 
   TOGGLE_VIRTUALIZATION = 'TOGGLE_VIRTUALIZATION',
+
+  SELECT_ROW = 'SELECT_ROW',
+  DELETE_ROW = 'DELETE_ROW',
 }
 
 export interface ActionTypeRequest extends Action {
@@ -63,6 +66,15 @@ export interface ToggleVirtualization extends Action {
   type: EActionTypes.TOGGLE_VIRTUALIZATION;
 }
 
+export interface SelectRow extends Action {
+  type: EActionTypes.SELECT_ROW;
+  payload: number;
+}
+
+export interface DeleteRow extends Action {
+  type: EActionTypes.DELETE_ROW;
+}
+
 export type Actions = ActionTypeSuccess
                     | ActionTypeRequest
                     | ReplaceSortColumns
@@ -71,4 +83,6 @@ export type Actions = ActionTypeSuccess
                     | UpdateCurrentBool
                     | UpdateEnum
                     | UpdateColumnVisibility
-                    | ToggleVirtualization;
+                    | ToggleVirtualization
+                    | SelectRow
+                    | DeleteRow;
