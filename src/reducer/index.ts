@@ -4,17 +4,15 @@ import { processVisibility } from '../utils/visibility-utils';
 import applyAllSettings from '../utils';
 import { StateModel } from './types';
 import { Actions } from '../actions/types';
+import { getSettings } from '../utils/localstorage-utils';
 
 const initialState: StateModel = {
   usersData: [],
   usersDataProcessed: [],
-  sortingColumns: [],
-  currentBool: 'All',
-  enumFilters: [],
-  hiddenColumns: [],
   virtualized: true,
   query: '',
   selectedRow: null,
+  ...getSettings(),
 };
 
 const reducer = (
@@ -30,7 +28,7 @@ const reducer = (
       return {
         ...state,
         usersData: action.payload,
-        usersDataProcessed: action.payload,
+        usersDataProcessed: applyAllSettings(state, action.payload),
       };
     case 'ADD_COLUMN_TO_SORT':
       return {

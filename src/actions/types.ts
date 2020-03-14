@@ -23,6 +23,14 @@ export enum EActionTypes {
   DELETE_ROW = 'DELETE_ROW',
 }
 
+export interface SettingsModel {
+  sortingColumns: SortingModel[];
+  currentBool: string;
+  enumFilters: string[];
+  hiddenColumns: string[];
+  query: string;
+}
+
 export interface ActionTypeRequest extends Action {
   type: EActionTypes.LOAD_USERS_DATA_REQUEST;
 }

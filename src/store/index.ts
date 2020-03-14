@@ -2,7 +2,7 @@ import {
   createStore, applyMiddleware, Middleware, compose,
 } from 'redux';
 import reducer from '../reducer';
-import saveSettings from '../utils/localstorage-utils';
+import { saveSettings } from '../utils/localstorage-utils';
 
 const settingsSaver: Middleware = (store) => (next) => (action) => {
   const res = next(action);

@@ -4,20 +4,22 @@ import { filterVisibility } from './visibility-utils';
 import { filterAll, filterBool, filterEnum } from './filter-utils';
 import { sort } from './sorting-utils';
 
-const applyAllSettings = (state: StateModel): DataModel[] => {
+const applyAllSettings = (state: StateModel, data?: DataModel[]): DataModel[] => {
   const {
-    usersData,
     sortingColumns,
     currentBool,
     enumFilters,
     hiddenColumns,
     query,
+    usersData,
   } = state;
 
-  let resData = filterVisibility(usersData, hiddenColumns);
+  let resData = data || usersData;
+
   resData = filterBool(resData, currentBool);
   resData = filterEnum(resData, enumFilters);
   resData = filterAll(resData, query);
+  resData = filterVisibility(resData, hiddenColumns);
   resData = sort(resData, sortingColumns);
 
   return resData;

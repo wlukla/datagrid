@@ -8,16 +8,14 @@ import VirtualizationToggler from './components/virtualization-toggler';
 
 import './App.scss';
 
-function App() {
-  return (
-    <Provider store={store}>
-      <h1>Data grid</h1>
-      <SearchBar />
-      <VisibilityBar />
-      <VirtualizationToggler />
-      <Table />
-    </Provider>
-  );
-}
+const App: React.FC = () => (
+  <Provider store={store}>
+    <h1>Data grid</h1>
+    <SearchBar />
+    <VisibilityBar />
+    <VirtualizationToggler />
+    <Table />
+  </Provider>
+);
 
 export default App;
