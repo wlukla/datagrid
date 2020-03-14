@@ -1,7 +1,6 @@
 import { Dispatch } from 'redux';
 import { DataModel } from '../data/data-model';
 import generateUsers from '../data/generate-users';
-import { SortingModel } from '../reducer/types';
 import {
   ActionTypeRequest,
   ActionTypeSuccess,
@@ -33,14 +32,14 @@ const loadUserData = (dispatch: Dispatch) => () => {
   dispatch(loadUsersDataSuccess(usersData));
 };
 
-const addColumnToSort = (sortingSettings: SortingModel): AddColumnToSort => ({
+const addColumnToSort = (idx: number): AddColumnToSort => ({
   type: EActionTypes.ADD_COLUMN_TO_SORT,
-  payload: sortingSettings,
+  payload: idx,
 });
 
-const replaceSortColumns = (sortingSettings: SortingModel): ReplaceSortColumns => ({
+const replaceSortColumns = (idx: number): ReplaceSortColumns => ({
   type: EActionTypes.REPLACE_SORT_COLUMNS,
-  payload: sortingSettings,
+  payload: idx,
 });
 
 const filterByAll = (query: string): FilterByAll => ({

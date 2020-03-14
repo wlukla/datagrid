@@ -42,12 +42,12 @@ export interface ActionTypeSuccess extends Action {
 
 export interface AddColumnToSort extends Action {
   type: EActionTypes.ADD_COLUMN_TO_SORT;
-  payload: SortingModel;
+  payload: number;
 }
 
 export interface ReplaceSortColumns extends Action {
   type: EActionTypes.REPLACE_SORT_COLUMNS;
-  payload: SortingModel;
+  payload: number;
 }
 
 export interface FilterByAll extends Action {

@@ -4,27 +4,65 @@ import { SortingModel } from '../reducer/types';
 
 const processSortingColumns = (
   sortingColumns: SortingModel[],
-  newColumn: SortingModel,
+  idx: number,
 ): SortingModel[] => {
   let resSortingColumns: SortingModel[] = [...sortingColumns];
-  const newColumnIndex: number = newColumn.columnIndex;
+
+  const newColumn: SortingModel = {
+    columnIndex: idx,
+    order: 'asc',
+  };
+
+  if (sortingColumns.length === 0) {
+    return [newColumn];
+  }
+
   const newColumnIndexInColumns = sortingColumns.findIndex((col) => (
-    col.columnIndex === newColumnIndex
+    col.columnIndex === idx
   ));
 
   if (resSortingColumns.length === 0) {
     resSortingColumns[0] = newColumn;
   } else if (newColumnIndexInColumns === -1) {
     resSortingColumns.push(newColumn);
-  } else {
+  } else if (resSortingColumns[newColumnIndexInColumns].order === 'asc') {
+    newColumn.order = 'desc';
+
     resSortingColumns = [
       ...resSortingColumns.slice(0, newColumnIndexInColumns),
       newColumn,
       ...resSortingColumns.slice(newColumnIndexInColumns + 1),
     ];
+  } else {
+    resSortingColumns = [
+      ...resSortingColumns.slice(0, newColumnIndexInColumns),
+      ...resSortingColumns.slice(newColumnIndexInColumns + 1),
+    ];
   }
 
   return resSortingColumns;
+};
+
+const processSortingColumn = (
+  sortingColumns: SortingModel[],
+  idx: number,
+): SortingModel[] => {
+  const column = sortingColumns.find((col) => (
+    col.columnIndex === idx
+  ));
+
+  let res: SortingModel[] = [{
+    columnIndex: idx,
+    order: 'desc',
+  }];
+
+  if (column && column.order === 'desc') {
+    res[0].order = 'asc';
+  } else if (column) {
+    res = [];
+  }
+
+  return res;
 };
 
 const sort = (data: DataModel[], settings: SortingModel[]): DataModel[] => {
@@ -48,4 +86,5 @@ const sort = (data: DataModel[], settings: SortingModel[]): DataModel[] => {
 export {
   sort,
   processSortingColumns,
+  processSortingColumn,
 };

@@ -1,4 +1,4 @@
-import { processSortingColumns } from '../utils/sorting-utils';
+import { processSortingColumns, processSortingColumn } from '../utils/sorting-utils';
 import { processEnumFilter } from '../utils/filter-utils';
 import { processVisibility } from '../utils/visibility-utils';
 import applyAllSettings from '../utils';
@@ -42,10 +42,10 @@ const reducer = (
     case 'REPLACE_SORT_COLUMNS':
       return {
         ...state,
-        sortingColumns: [action.payload],
+        sortingColumns: processSortingColumn(state.sortingColumns, action.payload),
         usersDataProcessed: applyAllSettings({
           ...state,
-          sortingColumns: [action.payload],
+          sortingColumns: processSortingColumn(state.sortingColumns, action.payload),
         }),
       };
     case 'FILTER_BY_ALL':
