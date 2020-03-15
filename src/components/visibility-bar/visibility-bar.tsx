@@ -10,7 +10,6 @@ interface VisibilityBarProps {
 
 const VisibilityBar: React.FC<VisibilityBarProps> = ({ toggleVisibility, hiddenColumns }) => {
   const headingWithLabels: string[][] = [
-    ['ID', 'id'],
     ['Username', 'username'],
     ['Name', 'name'],
     ['IP address', 'ip'],

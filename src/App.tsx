@@ -5,6 +5,7 @@ import Table from './components/table';
 import SearchBar from './components/search-bar';
 import VisibilityBar from './components/visibility-bar';
 import VirtualizationToggler from './components/virtualization-toggler';
+import CSVButton from './components/csv-button';
 
 import './App.scss';
 
@@ -14,6 +15,7 @@ const App: React.FC = () => (
     <SearchBar />
     <VisibilityBar />
     <VirtualizationToggler />
+    <CSVButton />
     <Table />
   </Provider>
 );
