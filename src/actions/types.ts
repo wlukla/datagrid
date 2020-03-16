@@ -21,7 +21,7 @@ export enum EActionTypes {
 
   SELECT_ROW = 'SELECT_ROW',
   ADD_ROW_TO_SELECT = 'ADD_ROW_TO_SELECT',
-  DELETE_ROW = 'DELETE_ROW',
+  DELETE_ROWS = 'DELETE_ROWS',
 }
 
 export interface SettingsModel {
@@ -85,8 +85,8 @@ export interface AddRowToSelect extends Action {
   payload: number;
 }
 
-export interface DeleteRow extends Action {
-  type: EActionTypes.DELETE_ROW;
+export interface DeleteRows extends Action {
+  type: EActionTypes.DELETE_ROWS;
 }
 
 export type Actions = ActionTypeSuccess
@@ -99,5 +99,5 @@ export type Actions = ActionTypeSuccess
                     | UpdateColumnVisibility
                     | ToggleVirtualization
                     | SelectRow
-                    | DeleteRow
+                    | DeleteRows
                     | AddRowToSelect;

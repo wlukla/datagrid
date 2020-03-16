@@ -3,6 +3,7 @@ import { StateModel } from '../reducer/types';
 import { filterVisibility } from './visibility-utils';
 import { filterAll, filterBool, filterEnum } from './filter-utils';
 import { sort } from './sorting-utils';
+import { deleteRows } from './row-utils';
 
 const applyAllSettings = (state: StateModel, data?: DataModel[]): DataModel[] => {
   const {
@@ -12,6 +13,7 @@ const applyAllSettings = (state: StateModel, data?: DataModel[]): DataModel[] =>
     hiddenColumns,
     query,
     usersData,
+    deletedRows,
   } = state;
 
   let resData = data || usersData;
@@ -19,6 +21,7 @@ const applyAllSettings = (state: StateModel, data?: DataModel[]): DataModel[] =>
   resData = filterBool(resData, currentBool);
   resData = filterEnum(resData, enumFilters);
   resData = filterAll(resData, query);
+  resData = deleteRows(resData, deletedRows);
   resData = filterVisibility(resData, hiddenColumns);
   resData = sort(resData, sortingColumns);
 

@@ -1,7 +1,7 @@
 import { processSortingColumns, processSortingColumn } from '../utils/sorting-utils';
 import { processEnumFilter } from '../utils/filter-utils';
 import { processVisibility } from '../utils/visibility-utils';
-import processRows from '../utils/row-utils';
+import { processRows, processDeletedRows } from '../utils/row-utils';
 import applyAllSettings from '../utils';
 import { StateModel } from './types';
 import { Actions } from '../actions/types';
@@ -13,6 +13,7 @@ const initialState: StateModel = {
   virtualized: true,
   query: '',
   selectedRows: [],
+  deletedRows: [],
   ...getSettings(),
 };
 
@@ -99,6 +100,16 @@ const reducer = (
       return {
         ...state,
         selectedRows: processRows(state.selectedRows, action.payload),
+      };
+    case 'DELETE_ROWS':
+      return {
+        ...state,
+        deletedRows: processDeletedRows(state.deletedRows, state.selectedRows),
+        selectedRows: [],
+        usersDataProcessed: applyAllSettings({
+          ...state,
+          deletedRows: processDeletedRows(state.deletedRows, state.selectedRows),
+        }),
       };
     default:
       return state;

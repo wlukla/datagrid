@@ -10,6 +10,7 @@ export interface StateModel {
   virtualized: boolean;
   query: string;
   selectedRows: number[];
+  deletedRows: number[];
 }
 
 export interface SortingModel {

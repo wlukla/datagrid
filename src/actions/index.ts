@@ -13,7 +13,7 @@ import {
   UpdateColumnVisibility,
   ToggleVirtualization,
   SelectRow,
-  DeleteRow,
+  DeleteRows,
   AddRowToSelect,
 } from './types';
 
@@ -77,8 +77,8 @@ const addRowToSelect = (id: number): AddRowToSelect => ({
   payload: id,
 });
 
-const deleteRow = (id: number): DeleteRow => ({
-  type: EActionTypes.DELETE_ROW,
+const deleteRows = (): DeleteRows => ({
+  type: EActionTypes.DELETE_ROWS,
 });
 
 export {
@@ -91,6 +91,6 @@ export {
   updateColumnVisibility,
   toggleVirtualization,
   selectRow,
-  deleteRow,
+  deleteRows,
   addRowToSelect,
 };
