@@ -1,4 +1,5 @@
 import { StateModel } from '../reducer/types';
+import { getQuery, getEmploymentStatus } from './query-string-utils';
 
 export const saveSettings = (state: StateModel): void => {
   const {
@@ -26,10 +27,10 @@ export const getSettings = () => {
   };
 
   const settings = {
-    enumFilters: getItem('enumFilters') || [],
+    enumFilters: getEmploymentStatus() || getItem('enumFilters') || [],
     hiddenColumns: getItem('hiddenColumns') || [],
     currentBool: getItem('currentBool') || 'All',
-    query: getItem('query') || '',
+    query: getQuery() || getItem('query') || '',
     sortingColumns: getItem('sortingColumns') || [],
   };
 
