@@ -10,6 +10,8 @@
 
 .sticky-body-cell {
   position: sticky;
+  float:left;
+  position:fixed;
   left: 0;
   height: 25px;
   width: 150px;

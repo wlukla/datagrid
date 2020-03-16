@@ -16,7 +16,7 @@ const VirtualizationToggler: React.FC<VirtualizationTogglerProps> = (props) => {
 
   return (
     <div className="virtualization-toggler">
-      <h4 className="virtualization-toggler__heading">Virtualization State:</h4>
+      <h4 className="virtualization-toggler__heading">Virtualization:</h4>
       <button
         type="button"
         className={virtualized ? 'btn btn-success btn-sm' : 'btn btn-danger btn-sm'}
