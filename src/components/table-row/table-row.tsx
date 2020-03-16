@@ -29,8 +29,8 @@ const TableRow: React.FC<RowProps> = (props) => {
       onClick={() => select(userData.id)}
     >
       {
-        Object.entries(userData).map((value) => (
-          <TableBodyCell key={value[0]}>{value[1]}</TableBodyCell>
+        Object.entries(userData).map((value, idx) => (
+          <TableBodyCell key={value[0]} index={idx}>{value[1]}</TableBodyCell>
         ))
       }
     </div>

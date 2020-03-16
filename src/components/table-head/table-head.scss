@@ -18,6 +18,12 @@
   border: 1px solid #000000;
 }
 
+.sticky-cell {
+  position: sticky;
+  left: 0;
+  height: 110px;
+}
+
 .active {
   color: lightcoral;
 }

@@ -13,7 +13,7 @@ interface TableHeadEnumCellProps {
 }
 
 const TableHeadEnumCell: React.FC<TableHeadEnumCellProps> = ({ filterByEnum, enumFilters }) => (
-  <div className="table-cell table-head-cell enum-col">
+  <div className="table-cell table-head-cell enum-col bg-dark">
     <span>Employment Status</span>
     <div className="checkbox-container">
       <label htmlFor="employed">

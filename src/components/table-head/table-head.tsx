@@ -52,7 +52,7 @@ const Head: React.FC<TableHeadProps> = (props) => {
   }
 
   return (
-    <div className="table-head bg-dark">
+    <div className="table-head">
       {
         headingWithLabels.map((col, idx) => {
           if (hiddenColumns.includes(col[1])) {
@@ -63,7 +63,9 @@ const Head: React.FC<TableHeadProps> = (props) => {
             <div
               key={col[0]}
               role="button"
-              className="table-head-cell"
+              className={idx === 0
+                ? 'table-head-cell bg-dark sticky-cell'
+                : 'table-head-cell  bg-dark'}
               onClick={(e) => {
                 if (e.shiftKey) {
                   addColumn(idx);
