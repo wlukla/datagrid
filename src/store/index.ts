@@ -1,8 +1,11 @@
 import {
-  createStore, applyMiddleware, Middleware, compose,
+  createStore, applyMiddleware, Middleware,
 } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
+
 import reducer from '../reducer';
 import { saveSettings } from '../utils/localstorage-utils';
+
 
 const settingsSaver: Middleware = (store) => (next) => (action) => {
   const res = next(action);
@@ -11,10 +14,10 @@ const settingsSaver: Middleware = (store) => (next) => (action) => {
 };
 
 /* eslint-disable no-underscore-dangle */
-const composeEnhancers = (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
-  || compose;
+
+const composeEnhancers = composeWithDevTools({});
 const store = createStore(
-  reducer, /* preloadedState, */
+  reducer,
   composeEnhancers(
     applyMiddleware(settingsSaver),
   ),

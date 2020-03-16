@@ -47,9 +47,11 @@ const processSortingColumn = (
   sortingColumns: SortingModel[],
   idx: number,
 ): SortingModel[] => {
-  const column = sortingColumns.find((col) => (
+  const columnIndex = sortingColumns.findIndex((col) => (
     col.columnIndex === idx
   ));
+
+  const column = sortingColumns[columnIndex];
 
   let res: SortingModel[] = [{
     columnIndex: idx,

@@ -17,12 +17,20 @@ export const saveSettings = (state: StateModel): void => {
 export const getSettings = () => {
   const storage = window.localStorage;
 
+  const getItem = (itemName: string) => {
+    const item = storage.getItem(itemName);
+    if (item) {
+      return JSON.parse(item);
+    }
+    return null;
+  };
+
   const settings = {
-    enumFilters: JSON.parse(storage.getItem('enumFilters') || ''),
-    hiddenColumns: JSON.parse(storage.getItem('hiddenColumns') || ''),
-    currentBool: JSON.parse(storage.getItem('currentBool') || ''),
-    query: JSON.parse(storage.getItem('query') || ''),
-    sortingColumns: JSON.parse(storage.getItem('sortingColumns') || ''),
+    enumFilters: getItem('enumFilters') || [],
+    hiddenColumns: getItem('hiddenColumns') || [],
+    currentBool: getItem('currentBool') || 'All',
+    query: getItem('query') || '',
+    sortingColumns: getItem('sortingColumns') || [],
   };
 
   return settings;
