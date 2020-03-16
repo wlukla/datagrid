@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { toggleVirtualization } from '../../actions';
 import { StateModel } from '../../reducer/types';
 
+import './virtualization-toggler.scss';
+
 interface VirtualizationTogglerProps {
   toggle: typeof toggleVirtualization;
   virtualized: boolean;
@@ -13,11 +15,11 @@ const VirtualizationToggler: React.FC<VirtualizationTogglerProps> = (props) => {
   const { toggle, virtualized } = props;
 
   return (
-    <div>
-      <h4>Virtualization State</h4>
+    <div className="virtualization-toggler">
+      <h4 className="virtualization-toggler__heading">Virtualization State:</h4>
       <button
         type="button"
-        className={virtualized ? 'btn btn-success' : 'btn btn-danger'}
+        className={virtualized ? 'btn btn-success btn-sm' : 'btn btn-danger btn-sm'}
         onClick={() => toggle()}
       >
         { virtualized ? 'On' : 'Off' }

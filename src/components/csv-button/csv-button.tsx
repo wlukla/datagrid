@@ -11,7 +11,7 @@ interface CSVButtonProps {
 const CSVButton: React.FC<CSVButtonProps> = ({ usersData }) => (
   <button
     type="button"
-    className="btn btn-success"
+    className="btn btn-success btn-sm"
     onClick={() => downloadCSV(usersData)}
   >
     Download CSV

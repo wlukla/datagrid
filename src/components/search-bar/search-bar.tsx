@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { filterByAll } from '../../actions/index';
 import { StateModel } from '../../reducer/types';
 
+import './search-bar.scss';
+
 interface SearchBarProps {
   filterAll: typeof filterByAll;
   query: string;
@@ -10,7 +12,9 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ filterAll, query }) => (
   <input
+    className="input"
     type="text"
+    placeholder="Start typing your search..."
     onChange={(e) => filterAll(e.target.value)}
     value={query}
   />
