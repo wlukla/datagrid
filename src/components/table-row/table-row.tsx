@@ -5,32 +5,43 @@ import TableBodyCell from '../table-body-cell';
 
 import './table-row.scss';
 import { StateModel } from '../../reducer/types';
-import { selectRow } from '../../actions';
+import { selectRow, addRowToSelect } from '../../actions';
 
 interface RowProps {
   userData: DataModel;
   select: typeof selectRow;
-  selectedRow: number | null;
+  addRow: typeof addRowToSelect;
+  selectedRows: number[];
   style?: CSSProperties;
 }
 
 const TableRow: React.FC<RowProps> = (props) => {
   const {
-    userData, style, selectedRow, select,
+    userData, style, selectedRows, select, addRow,
   } = props;
 
   return (
     <div
-      className={
-        userData.id === selectedRow ? 'table-row table-row-selected' : 'table-row'
-      }
+      className="table-row"
       style={style}
       role="row"
-      onClick={() => select(userData.id)}
+      onClick={(e) => {
+        if (e.shiftKey) {
+          addRow(userData.id);
+        } else {
+          select(userData.id);
+        }
+      }}
     >
       {
         Object.entries(userData).map((value, idx) => (
-          <TableBodyCell key={value[0]} index={idx}>{value[1]}</TableBodyCell>
+          <TableBodyCell
+            key={value[0]}
+            index={idx}
+            isSelected={selectedRows.includes(userData.id)}
+          >
+            {value[1]}
+          </TableBodyCell>
         ))
       }
     </div>
@@ -38,11 +49,12 @@ const TableRow: React.FC<RowProps> = (props) => {
 };
 
 const mapStateToProps = (state: StateModel) => ({
-  selectedRow: state.selectedRow,
+  selectedRows: state.selectedRows,
 });
 
 const mapDispatchToProps = {
   select: selectRow,
+  addRow: addRowToSelect,
 };
 
 export default connect(

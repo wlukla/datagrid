@@ -20,6 +20,7 @@ export enum EActionTypes {
   TOGGLE_VIRTUALIZATION = 'TOGGLE_VIRTUALIZATION',
 
   SELECT_ROW = 'SELECT_ROW',
+  ADD_ROW_TO_SELECT = 'ADD_ROW_TO_SELECT',
   DELETE_ROW = 'DELETE_ROW',
 }
 
@@ -79,6 +80,11 @@ export interface SelectRow extends Action {
   payload: number;
 }
 
+export interface AddRowToSelect extends Action {
+  type: EActionTypes.ADD_ROW_TO_SELECT;
+  payload: number;
+}
+
 export interface DeleteRow extends Action {
   type: EActionTypes.DELETE_ROW;
 }
@@ -93,4 +99,5 @@ export type Actions = ActionTypeSuccess
                     | UpdateColumnVisibility
                     | ToggleVirtualization
                     | SelectRow
-                    | DeleteRow;
+                    | DeleteRow
+                    | AddRowToSelect;

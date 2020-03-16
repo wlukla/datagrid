@@ -53,11 +53,11 @@ const processSortingColumn = (
 
   let res: SortingModel[] = [{
     columnIndex: idx,
-    order: 'desc',
+    order: 'asc',
   }];
 
-  if (column && column.order === 'desc') {
-    res[0].order = 'asc';
+  if (column && column.order === 'asc') {
+    res[0].order = 'desc';
   } else if (column) {
     res = [];
   }

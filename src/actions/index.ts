@@ -14,6 +14,7 @@ import {
   ToggleVirtualization,
   SelectRow,
   DeleteRow,
+  AddRowToSelect,
 } from './types';
 
 const loadUsersDataRequest = (): ActionTypeRequest => ({
@@ -71,6 +72,11 @@ const selectRow = (id: number): SelectRow => ({
   payload: id,
 });
 
+const addRowToSelect = (id: number): AddRowToSelect => ({
+  type: EActionTypes.ADD_ROW_TO_SELECT,
+  payload: id,
+});
+
 const deleteRow = (id: number): DeleteRow => ({
   type: EActionTypes.DELETE_ROW,
 });
@@ -86,4 +92,5 @@ export {
   toggleVirtualization,
   selectRow,
   deleteRow,
+  addRowToSelect,
 };

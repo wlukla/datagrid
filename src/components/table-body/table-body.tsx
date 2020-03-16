@@ -41,7 +41,6 @@ const TableBody: React.FC<TableBodyProps> = (props) => {
         <AutoSizer>
           {({ height, width }) => (
             <List
-              className="List"
               height={height}
               itemCount={usersData.length}
               itemSize={25}
@@ -61,7 +60,7 @@ const TableBody: React.FC<TableBodyProps> = (props) => {
     <>
       {
         usersData.map((user) => (
-          <TableRow userData={user} />
+          <TableRow key={user.id} userData={user} />
         ))
       }
     </>
