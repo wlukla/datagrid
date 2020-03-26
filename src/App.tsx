@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import store from './store';
+import Table from './components/table';
+import Toolbar from './components/toolbar';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import './App.scss';
+
+const App: React.FC = () => (
+  <Provider store={store}>
+    <Toolbar />
+    <div className="d-flex justify-content-center">
+      <span>
+        Querystring example:
+        {' '}
+        <i>/?q=Ade&employmentStatus=In%20active%20search,Retired</i>
+      </span>
     </div>
-  );
-}
+    <Table />
+  </Provider>
+);
 
 export default App;

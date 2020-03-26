@@ -1,0 +1,23 @@
+.select {
+  color: #000000;
+}
+
+.enum-col {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  label {
+    margin: 0;
+  }
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  label {
+    margin: 0;
+  }
+}

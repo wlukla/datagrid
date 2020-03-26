@@ -1,0 +1,40 @@
+.table-head {
+  position: absolute;
+  top: 0;
+  width: 1500px;
+  height: 110px;
+  display: flex;
+  color: #ffffff;
+  font-size: 0.85rem;
+}
+
+.table-head-cell {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 150px;
+  border: 1px solid #000000;
+}
+
+.sticky-cell {
+  position: sticky;
+  left: 0;
+  height: 110px;
+}
+
+.active {
+  color: lightcoral;
+}
+
+.sorting-switchers {
+  display: flex;
+  justify-content: space-around;
+  width: 2rem;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+}
